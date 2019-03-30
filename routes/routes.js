@@ -6,12 +6,14 @@ router.get('/', (req, res) => {
     res.render('index')
 });
 
-router.post("/sql", (req, res) => {    
+router.post("/sql", (req, res) => {
+    console.log(req.body);
+    
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.body.category && req.body.amount && req.body.note) {
         let name = 'admin' //NOTE(DanoB) Replace when login is working
         let category = req.body.category;
-        let amount = req.body.amount;
+        let amount = req.body.amount * ((req.body.credit === "false") ? -1 : 1);
         let note = req.body.note;
         let date = new Date().getTime();
 
