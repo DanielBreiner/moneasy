@@ -7,7 +7,7 @@ res.render('index')
 
 });
 router.get('/test', (req,res) => {
-    var name = req.query.name
+    require("../request.js");
     
 });
 router.get('/dashboard', (req,res) => {
