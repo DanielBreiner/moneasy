@@ -16,21 +16,22 @@
     </tbody>
 </table>
 
-<div style='width: 350px; height: 400px; display: block;'> <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
+<div style='width: 350px; height: 400px; display: block;'>
+    <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
     <canvas id='pieChart'>
     </canvas>
 </div>
 
 <script>
     function get() {
-        
+
         $.ajax({
             url: "/sql",
             contentType: "application/json",
             success: function (res) {
                 let table = $("#expenses tbody").html("");
                 console.log(res)
-                res.forEach(function(item){
+                res.forEach(function (item) {
                     table.append(`\
                     <tr>\
                         <td>${item["date"]}</td>\
@@ -48,7 +49,7 @@
         console.log("post");
     }
 
-    $(function(){
+    $(function () {
 
         //NOTE(DanoB) PIECHART
         var ctx = document.getElementById('pieChart');
@@ -58,7 +59,7 @@
                 labels: ['zostato', 'minute'],
                 datasets: [{
                     label: 'peniaze',
-                    data: [1,1],
+                    data: [1, 1],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -71,7 +72,7 @@
                 }]
             },
             options: {
-                responsive:true,
+                responsive: true,
                 maintainAspectRatio: false,
             }
         });
