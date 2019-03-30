@@ -32,6 +32,11 @@ body {
     height: auto;
 }
 
+.left-half {
+    display: flex;
+    flex-direction: column;
+}
+
 .right-half {
     display: flex;
     align-items: center;
@@ -57,6 +62,11 @@ body {
     text-transform: uppercase;
 }
 
+.arrow-down {
+    display: none;
+    color: #fff;
+}
+
 @media all and (max-width: 1024px) {
     .main-index {
         flex-direction: column;
@@ -67,21 +77,33 @@ body {
         width: 100%;
     }
 
+    .left-half {
+        height: 75vh;
+        justify-content: space-between;
+    }
+
     .right-half {
-        height: 50vh;
+        height: 40vh;
         background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
         background-size: 30%;
     }
 
     .login-coin {
-        width: 30vw;
-        height: 30vw;
-        line-height: 31vw;
-        font-size: 6.5vw;
+        width: 36vw;
+        height: 36vw;
+        line-height: 37vw;
+        font-size: 6.9vw;
+    }
+
+
+    .arrow-down {
+        display: inline-block;
+        width: 10vw;
+        height: auto;
     }
 }
 
-@media all and (max-width: 580px) {
+@media all and (max-width: 600px) {
     .login-coin {
         width: 40vw;
         height: 40vw;
@@ -90,7 +112,6 @@ body {
     }
 
     .right-half {
-        height: 50vh;
         background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
         background-size: 38%;
     }
