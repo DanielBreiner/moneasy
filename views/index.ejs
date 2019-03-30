@@ -1,25 +1,29 @@
-
-
+</head>
+<body>
     <section class="main-index">
         <section class="left-half">
             <p class="logo">
                 <img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img">
             </p>
+            <div class="cloud">
+                <p class="cloud-text">
+                    Hey! Come with me to the adventure to collect your treasure
+                </p>
+            </div>
             <p class="arrow-container">
                 <img src="img/arrow_down.svg" class="arrow-down">
             </p>
         </section>
         <section class="right-half">
-            <a href="https://github.com/login/oauth/authorize?client_id=b60801c8344cf6878ff5" class="login-coin">Login</a>
+            <a href="crossroad" class="login-coin">Login</a>
         </section>
     </section>
     <script>
     $(function(){
         $(".arrow-container").click(function() {
-            $('html').animate({
-                scrollTop: $(".right-half").offset().top
-            }, 1000);
+            document.querySelector('.right-half').scrollIntoView({ 
+                behavior: 'smooth'
+            });
         });
     })
     </script>
-</body>
