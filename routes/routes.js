@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const sql = require("../sql");
 
-
 router.get('/', (req, res) => {
     res.render('index')
-
 });
+
 router.get('/sql', (req, res) => {
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.query.category && req.query.amount && req.query.note) {
@@ -32,10 +31,16 @@ router.get('/sql', (req, res) => {
             }
         );
     } else {
-        res.send("fail")
+        sql.request("spending", function(data) {            
+            res.set('Content-Type', 'application/json');
+            res.send(data);
+        })
+        
     }
 });
+
 router.get('/dashboard', (req, res) => {
     res.render('dashboard')
 });
+
 module.exports = router;
