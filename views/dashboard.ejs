@@ -1,20 +1,15 @@
 <form method="GET" action="/sql">
-    <input type="text" placeholder="category" name="category">
+    <label for="credit">Income</label>
+    <input type="checkbox" name="credit">
+    <select name="category"> <!-- TODO(DanoB) Fetch from database -->
+    </select>
     <input type="number" placeholder="amount" name="amount" step="0.01">
     <input type="text" placeholder="note" name="note">
-    <input type="submit">
 </form>
+<button id="submit">Submit</button>
 
 <button id="get">Show expenses</button>
 
-<table id="expenses">
-    <thead>
-
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
 
 <div style='width: 350px; height: 400px; display: block;'>
     <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
@@ -22,15 +17,20 @@
     </canvas>
 </div>
 
+<table id="expenses">
+    <thead></thead>
+    <tbody>
+
+    </tbody>
+</table>
+
 <script>
     function get() {
-
         $.ajax({
-            url: "/sql",
-            contentType: "application/json",
-            success: function (res) {
+            "url": "/sql",
+            "contentType": "application/json",
+            "success": function (res) {
                 let table = $("#expenses tbody").html("");
-                console.log(res)
                 res.forEach(function (item) {
                     table.append(`\
                     <tr>\
@@ -46,7 +46,52 @@
     }
 
     function post() {
-        console.log("post");
+        data = {};
+        $('form').serializeArray().forEach(function(item){
+            if (item){
+                data[item["name"]] = item["value"];
+            }
+        });
+        $.ajax({
+            "url": "/sql",
+            "method": "POST",
+            "content-type": "application/json",
+            "data": data,
+            "success": function (res) {                
+                if (res){
+                    $("form").trigger("reset");
+                    get();
+                    //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
+                } else {
+                    console.log(res)
+                    //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+                }
+            }
+        });
+    }
+
+    function select() { //NOTE(DanoB) Changes the options in form select
+        let el = $("form select");
+        
+        if ($("form input[type=checkbox]").is(':checked')) {
+            el.html('\
+            <option value="">--Choose a category--</option>\
+            <option value="books">books</option>\
+            <option value="sweets">sweets</option>\
+            <option value="food">food</option>\
+            <option value="fun">fun</option>\
+            <option value="toys and games">toys and games</option>\
+            <option value="gifts">gifts</option>\
+            ');
+            
+        } else {
+            el.html('\
+            <option value="">--Choose a category--</option>\
+            <option value="pocket money">pocket money</option>\
+            <option value="gift">gift</option>\
+            <option value="chores">chores</option>\
+            ');
+        }
     }
 
     $(function () {
@@ -84,6 +129,17 @@
         $("#get").on("click", function () {
             get();
         })
+
+        $("#submit").on("click", function () {
+            post();
+        })
+
+        $("form input[type=checkbox]").change( function() {
+            select();
+        });
+
+        get();
+        select();
     });
 </script>
 </body>

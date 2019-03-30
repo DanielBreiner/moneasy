@@ -4,12 +4,13 @@
 
 body {
     font-family: Kalam, Arial, cursive, sans-serif;
+    text-align: center;
 }
 
+/* INDEX */
 .main-index {
     display: flex;
     flex-wrap: wrap;
-    text-align: center;
 }
 
 .left-half,
@@ -81,6 +82,51 @@ body {
     text-transform: uppercase;
 }
 
+/* CROSSROAD */
+
+.crossroad {
+    width: 100vw;
+    height: 100vh;
+    background: url("img/lady_cross.png") bottom center no-repeat,
+    url("img/cross_bg.png") bottom repeat-x #cfeffc;
+    background-size: 33vh, 63vh;
+    padding-top: 3vh;
+}
+
+.logo-crs {
+    margin-top: 0;
+}
+
+.logo-img-crs {
+    width: 30vh;
+    height: auto;
+}
+
+.cloud-crs {
+    background: url("img/cloud.png") no-repeat center;
+    background-size: contain;
+    margin: 0;
+    display: inline-block;
+    color: #222;
+}
+
+.cloud-text-crs {
+    font-size: 4.3vh;
+    margin: 5vh 6vh 5vh 5vh;
+    padding: 5.5vh;
+    display: inline-block;
+}
+
+.land-of-spend .cloud-crs {
+    margin-left: 10vw;
+}
+
+.go-to-goal .cloud-crs {
+    margin-right: 10vw;
+}
+
+/* QUERIES */
+
 @media all and (max-width: 1024px) {
     .main-index {
         flex-direction: column;
@@ -133,11 +179,6 @@ body {
     .cloud-text {
         margin: 7% 11% 7% 7%;
         font-size: 4.8vw;
-    }
-
-    .crossroad {
-        width: 100%;
-        height: 100%;
     }
       
 }
