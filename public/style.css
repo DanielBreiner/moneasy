@@ -37,6 +37,25 @@ body {
     flex-direction: column;
 }
 
+.cloud {
+    background: url("img/cloud.png") no-repeat center;
+    background-size: contain;
+    margin-top: 4vh;
+}
+
+.cloud-text {
+    width: 45%;
+    margin: 10% 15% 10% 10%;
+    padding: 4%;
+    font-size: 2vw;
+    display: inline-block;
+}
+
+.arrow-down {
+    display: none;
+    color: #fff;
+}
+
 .right-half {
     display: flex;
     align-items: center;
@@ -60,11 +79,6 @@ body {
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-}
-
-.arrow-down {
-    display: none;
-    color: #fff;
 }
 
 @media all and (max-width: 1024px) {
@@ -100,7 +114,27 @@ body {
         display: inline-block;
         width: 10vw;
         height: auto;
+        animation: pulse .5s infinite alternate;
     }
+
+    @keyframes pulse {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+    }
+
+    .arrow-down:hover {
+        cursor: pointer;
+    }
+
+    .cloud {
+        margin: 0 0 15vh; /*9vw*/
+    }
+
+    .cloud-text {
+        margin: 7% 11% 7% 7%;
+        font-size: 4.8vw;
+    }
+      
 }
 
 @media all and (max-width: 600px) {
