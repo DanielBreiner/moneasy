@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/', require('./routes/routes'));
+app.use('/test', require('./routes/routes'));
 
 //Bodyparser
 app.use(express.urlencoded({ extended: false }));
