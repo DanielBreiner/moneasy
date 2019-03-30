@@ -16,9 +16,9 @@
     <script>
     $(function(){
         $(".arrow-container").click(function() {
-            $('html').animate({
-                scrollTop: $(".right-half").offset().top
-            }, 1000);
+            document.querySelector('.right-half').scrollIntoView({ 
+                behavior: 'smooth'
+            });
         });
     })
     </script>
