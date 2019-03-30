@@ -87,8 +87,9 @@ body {
 .crossroad {
     width: 100vw;
     height: 100vh;
-    background: url("img/lady_cross.png") bottom center no-repeat #23bf76;
-    background-size: 38vh;
+    background: url("img/lady_cross.png") bottom center no-repeat,
+    url("img/cross_bg.png") bottom repeat-x #cfeffc;
+    background-size: 33vh, 63vh;
     padding-top: 3vh;
 }
 
@@ -105,6 +106,8 @@ body {
     background: url("img/cloud.png") no-repeat center;
     background-size: contain;
     margin: 0;
+    display: inline-block;
+    color: #222;
 }
 
 .cloud-text-crs {
@@ -112,6 +115,14 @@ body {
     margin: 5vh 6vh 5vh 5vh;
     padding: 5.5vh;
     display: inline-block;
+}
+
+.land-of-spend .cloud-crs {
+    margin-left: 10vw;
+}
+
+.go-to-goal .cloud-crs {
+    margin-right: 10vw;
 }
 
 /* QUERIES */
