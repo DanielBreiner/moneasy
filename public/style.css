@@ -19,7 +19,8 @@ body {
 }
 
 .left-half {
-    background: #cfeffc;
+    background: url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background-size: contain;
 }
 
 .right-half {
