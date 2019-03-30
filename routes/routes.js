@@ -31,7 +31,9 @@ router.get('/sql', (req, res) => {
             }
         );
     } else {
-        sql.request("spending", function(data) {            
+        sql.request("spending", function(data) {
+            console.log("success");
+                  
             res.set('Content-Type', 'application/json');
             res.send(data);
         })

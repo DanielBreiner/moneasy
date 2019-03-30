@@ -1,21 +1,17 @@
-var client;
+var connect;
 
 function main(c){
-    client = c;
+    connect = c;
     return insert;
 }
 
 function insert(table, data, callback){
-
-    client.connect();    
+    client = connect(); 
     client.query(`INSERT INTO public.${table} VALUES ('${data["name"]}', ${data["amount"]}, '${data["note"]}', ${data["date"]}, '${data["category"]}');`, (err, res) => {
         if (err) throw err;
-        callback(res.rowCount == 1);
         client.end();
+        callback(res.rowCount == 1);
     });
-
-    console.log(table, data);
-    callback()
 }
 
 module.exports = main;
