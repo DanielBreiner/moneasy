@@ -1,0 +1,19 @@
+.radio-box input{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+}
+.img{
+    background-image:url(http://picsum.photos/25);
+}
+.label{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:25px;
+    height:25px;
+}
+.radio-box input:checked + .label {
+    border: 1px solid red;
+}
