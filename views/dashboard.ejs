@@ -24,124 +24,12 @@
 
     </tbody>
 </table>
-
+<script src="dashboard-js/ajax.js"></script>
+<script src="dashboard-js/piechart.js"></script>
+<script src="dashboard-js/select.js"></script>
 <script>
-    function get() {
-        $.ajax({
-            "url": "/sql",
-            "contentType": "application/json",
-            "success": function (res) {
-                let table = $("#expenses tbody").html("");
-                res.forEach(function (item) {
-                    table.append(`\
-                    <tr>\
-                        <td>${item["date"]}</td>\
-                        <td>${item["spent"]}</td>\
-                        <td>${item["category"]}</td>\
-                        <td>${item["note"]}</td>\
-                    </tr>\
-                    `)
-                });
-            }
-        });
-    }
-
-    function post() {
-        let data = {};
-        $('form').serializeArray().forEach(function(item){
-            if (item){
-                data[item["name"]] = item["value"];
-            }
-        });        
-        if ($("form input[type=checkbox]").is(":checked")){
-            data["credit"] = true;
-        } else {
-            data["credit"] = false;
-        }
-        
-        $.ajax({
-            "url": "/sql",
-            "method": "POST",
-            "content-type": "application/json",
-            "data": data,
-            "success": function (res) {                
-                if (res){
-                    $("form").trigger("reset");
-                    get();
-                    //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
-                } else {
-                    console.log(res)
-                    //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
-                }
-            }
-        });
-    }
-
-    function select() { //NOTE(DanoB) Changes the options in form select
-        let el = $("form #radio-data");
-        
-        if ($("form input[type=checkbox]").is(':checked')) {
-            el.html(`\
-            <div class='radio-box'>\
-            <input checked="checked" id="food" type="radio" name="categories" value="food" />\
-            <label class='label img' for='food'></label>\
-            <input id="books" type="radio" name="categories" value="books" />\
-            <label class='label img' for='books'></label>\
-            <input id="sweets" type="radio" name="categories" value="sweets" />\
-            <label class='label img' for='sweets'></label>\
-            <input id="toys and games" type="radio" name="categories" value="toys and games" />\
-            <label class='label img' for='toys and games'></label>\
-            <input id="gifts" type="radio" name="categories" value="gifts" />\
-            <label class='label img' for='gifts'></label>\
-            <input id="fun" type="radio" name="categories" value="fun" />\
-            <label class='label img' for='fun'></label>\
-            </div>\
-            `);
-            
-        } else {
-            el.html(`\
-            <div class='radio-box'>\
-            <input checked="checked" id="pocketMoney" type="radio" name="categories" value="pocketMoney" />\
-            <label class='label img' for='pocketMoney'></label>\
-            <input id="gift" type="radio" name="categories" value="gift" />\
-            <label class='label img' for='gift'></label>\
-            <input id="chores" type="radio" name="categories" value="chores" />\
-            <label class='label img' for='chores'></label>\
-            </div>\
-            `);
-        }
-    }
-
     $(function () {
-
-        //NOTE(DanoB) PIECHART
-        var ctx = document.getElementById('pieChart');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['zostato', 'minute'],
-                datasets: [{
-                    label: 'peniaze',
-                    data: [1, 1],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    display: false,
-                },
-            }
-        });
+        piechart()
 
         //NOTE(DanoB) adding ajax onclick listener
         $("#get").on("click", function () {
@@ -160,3 +48,4 @@
         select();
     });
 </script>
+</body>
