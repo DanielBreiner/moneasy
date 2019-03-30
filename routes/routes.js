@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const sql = require("../sql");
 
-router.get('/', (req, res) => {
-    res.render('index')
-});
-
 router.post("/sql", (req, res) => {
     console.log(req.body);
     
@@ -42,14 +38,24 @@ router.get('/sql', (req, res) => {
     })
 });
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
-});
-router.get('/crossroad', (req, res) => {
-    res.render('crossroad')
-});
-router.get('/goal', (req, res) => {
-    res.render('goal')
+router.get('*', (req, res) => {
+    switch (req.originalUrl) {
+        case "/":
+            res.render('index');
+            break;
+        case "/dashboard":
+            res.render('dashboard');
+            break;
+        case "/crossroad":
+            res.render('crossroad');
+            break;
+        case "/goal":
+            res.render('goal');
+            break;
+        default:
+            res.sendStatus(404);
+            break;
+    }
 });
 
 module.exports = router;
