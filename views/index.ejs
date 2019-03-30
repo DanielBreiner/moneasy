@@ -18,4 +18,13 @@
             <a href="https://github.com/login/oauth/authorize?client_id=b60801c8344cf6878ff5" class="login-coin">Login</a>
         </section>
     </section>
+    <script>
+    $(function(){
+        $(".arrow-container").click(function() {
+            $('html, body').animate({
+                    scrollTop: $(".right-half").offset().top
+            }, 1000);
+        });
+    })
+    </script>
 </body>
