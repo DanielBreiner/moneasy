@@ -3,7 +3,7 @@
   }
 
 body {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Kalam, Arial, cursive, sans-serif;
 }
 
 .main-index {
@@ -19,12 +19,100 @@ body {
 }
 
 .left-half {
-    background: url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background: url("img/main_page_left_girl.png") bottom no-repeat #cfeffc;
     background-size: contain;
+}
+
+.logo {
+    margin-top: 6vh;
+}
+
+.logo-img {
+    width: 80%;
+    height: auto;
+}
+
+.left-half {
+    display: flex;
+    flex-direction: column;
 }
 
 .right-half {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url("img/lady_hint.png") bottom right no-repeat,
+    url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background-size: 45%, contain;
+    ;
+}
+
+.login-coin {
+    display: block;
+    width: 20vw;
+    height: 20vw;
+    line-height: 21vw;
+    background: url("img/coin.png") no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    font-family: "Luckiest Guy", cursive;
+    font-size: 4.5vw;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.arrow-down {
+    display: none;
+    color: #fff;
+}
+
+@media all and (max-width: 1024px) {
+    .main-index {
+        flex-direction: column;
+    }
+
+    .left-half,
+    .right-half {
+        width: 100%;
+    }
+
+    .left-half {
+        height: 75vh;
+        justify-content: space-between;
+    }
+
+    .right-half {
+        height: 40vh;
+        background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
+        background-size: 30%;
+    }
+
+    .login-coin {
+        width: 36vw;
+        height: 36vw;
+        line-height: 37vw;
+        font-size: 6.9vw;
+    }
+
+
+    .arrow-down {
+        display: inline-block;
+        width: 10vw;
+        height: auto;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .login-coin {
+        width: 40vw;
+        height: 40vw;
+        line-height: 42vw;
+        font-size: 8.5vw;
+    }
+
+    .right-half {
+        background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
+        background-size: 38%;
+    }
 }
