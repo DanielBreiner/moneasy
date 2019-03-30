@@ -3,7 +3,7 @@
   }
 
 body {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Kalam, Arial, cursive, sans-serif;
 }
 
 .main-index {
@@ -19,12 +19,56 @@ body {
 }
 
 .left-half {
-    background: url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background: url("img/main_page_left_girl.png") bottom no-repeat #cfeffc;
     background-size: contain;
+}
+
+.logo {
+    margin-top: 6vh;
+}
+
+.logo-img {
+    width: 80%;
+    height: auto;
 }
 
 .right-half {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url("img/lady_hint.png") bottom right no-repeat,
+    url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background-size: 45%, contain;
+    ;
+}
+
+.login-coin {
+    display: block;
+    width: 20vw;
+    height: 20vw;
+    line-height: 21vw;
+    background: url("img/coin.png") no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    font-family: "Luckiest Guy", cursive;
+    font-size: 4.5vw;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-index {
+        flex-direction: column;
+    }
+
+    .left-half,
+    .right-half {
+        width: 100%;
+    }
+
+    .right-half {
+        background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
+        background-size: 40%;
+    }
 }
