@@ -57,7 +57,7 @@ body {
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 1024px) {
+@media all and (max-width: 1024px) {
     .main-index {
         flex-direction: column;
     }
@@ -68,7 +68,30 @@ body {
     }
 
     .right-half {
+        height: 50vh;
         background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
-        background-size: 40%;
+        background-size: 30%;
+    }
+
+    .login-coin {
+        width: 30vw;
+        height: 30vw;
+        line-height: 31vw;
+        font-size: 6.5vw;
+    }
+}
+
+@media all and (max-width: 580px) {
+    .login-coin {
+        width: 40vw;
+        height: 40vw;
+        line-height: 42vw;
+        font-size: 8.5vw;
+    }
+
+    .right-half {
+        height: 50vh;
+        background: url("img/lady_hint.png") bottom right no-repeat #23bf76;
+        background-size: 38%;
     }
 }
