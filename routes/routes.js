@@ -7,7 +7,13 @@ res.render('index')
 
 });
 router.get('/test', (req,res) => {
-    require("../request.js");
+    var name = 'ivan'
+    var category = req.query.category;
+    var amount = req.query.amount;
+    var note = req.query.note;
+    var dateCount= new Date;
+    var date = dateCount.getTime();
+    sql.insert(name, category, amount, note, date);
     
 });
 router.get('/dashboard', (req,res) => {
