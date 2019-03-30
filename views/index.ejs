@@ -5,11 +5,6 @@
             <p class="logo">
                 <img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img">
             </p>
-            <div class="cloud">
-                <p class="cloud-text">
-                    Hey! Come with me to the adventure to collect your treasure
-                </p>
-            </div>
             <p class="arrow-container">
                 <img src="img/arrow_down.svg" class="arrow-down">
             </p>
@@ -21,9 +16,9 @@
     <script>
     $(function(){
         $(".arrow-container").click(function() {
-            document.querySelector('.right-half').scrollIntoView({ 
-                behavior: 'smooth'
-            });
+            $('html').animate({
+                scrollTop: $(".right-half").offset().top
+            }, 1000);
         });
     })
     </script>

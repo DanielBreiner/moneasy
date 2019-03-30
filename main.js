@@ -15,6 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/routes'));
 app.use('/test', require('./routes/routes'));
 app.use('/dashboard', require('./routes/routes'));
+app.use('/crossroad', require('./routes/routes'));
+app.use('/goal', require('./routes/routes'));
 
 //Bodyparser
 app.use(express.urlencoded({ extended: false }));
