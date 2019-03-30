@@ -19,6 +19,9 @@ app.use('/dashboard', require('./routes/routes'));
 //Bodyparser
 app.use(express.urlencoded({ extended: false }));
 
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
 //port
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started. Port: ${PORT}`));

@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const { Client } = require('pg');
 
 const client = new Client({
@@ -7,10 +5,7 @@ const client = new Client({
   ssl: true,
 });
 
-client.connect();
-client.query('SELECT * FROM public.spending;', (err, res) => {
-    if (err) throw err;
-    console.log(res.rows)
-    client.end();
-  });
-module.exports = router;
+module.exports = {
+    "insert": require("./sql/insert.js")(client),
+    "request": require("./sql/request.js")(client)
+}
