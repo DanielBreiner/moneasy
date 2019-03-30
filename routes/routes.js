@@ -6,9 +6,7 @@ router.get('/', (req, res) => {
     res.render('index')
 });
 
-router.post("/sql", (req, res) => {
-    console.log(req.body);
-    
+router.post("/sql", (req, res) => {    
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.body.category && req.body.amount && req.body.note) {
         let name = 'admin' //NOTE(DanoB) Replace when login is working

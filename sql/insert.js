@@ -9,10 +9,7 @@ function insert(table, data, callback){
     client = connect(); 
     client.query(`INSERT INTO public.${table} VALUES ('${data["name"]}', ${data["amount"]}, '${data["note"]}', ${data["date"]}, '${data["category"]}');`, (err, res) => {
         if (err) throw err;
-        client.end();
-        console.log(res.rowCount);
-        console.log(res.rowCount == 1);
-        
+        client.end();        
         callback(res.rowCount == 1);
     });
 }
