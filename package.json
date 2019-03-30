@@ -10,5 +10,9 @@
     "start": "node main.js"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0"
+  }
 }
