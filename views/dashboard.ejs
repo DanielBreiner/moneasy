@@ -52,17 +52,19 @@
                 data[item["name"]] = item["value"];
             }
         });
-        console.log(JSON.stringify(data));
-        
-        
         $.ajax({
             "url": "/sql",
             "method": "POST",
             "content-type": "application/json",
-            "data": JSON.stringify(data),
+            "data": data,
             "success": function (res) {                
                 if (res){
-                    console.log(res);
+                    $("form").trigger("reset");
+                    get();
+                    //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
+                } else {
+                    console.log(res)
+                    //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
                 }
             }
         });
