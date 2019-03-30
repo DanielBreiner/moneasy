@@ -1,0 +1,30 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.main-index {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.left-half,
+.right-half {
+    width: 50%;
+    height: 100vh;
+}
+
+.left-half {
+    background: url("img/main_page_left.png") bottom no-repeat #cfeffc;
+    background-size: contain;
+}
+
+.right-half {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
