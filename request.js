@@ -7,10 +7,11 @@ const client = new Client({
   ssl: true,
 });
 
+
 client.connect();
-client.query('SELECT * FROM spending;', (err, res) => {
+client.query('SELECT * FROM public.spending;', (err, res) => {
     if (err) throw err;
     console.log(res.rows)
     client.end();
   });
-module.exports = 'prezil som';
+module.exports = router;
