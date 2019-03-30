@@ -8,9 +8,9 @@ const client = new Client({
 });
 
 client.connect();
-client.query('SELECT * FROM spending.tables;', (err, res) => {
+client.query('SELECT * FROM spending;', (err, res) => {
     if (err) throw err;
-    console.log(res)
+    console.log(res.rows)
     client.end();
   });
 module.exports = 'prezil som';
