@@ -6,6 +6,10 @@ router.get('/', (req, res) => {
     res.render('index')
 });
 
+router.put("/sql", (req, res) => {
+    
+})
+
 router.get('/sql', (req, res) => {
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.query.category && req.query.amount && req.query.note) {
@@ -43,6 +47,12 @@ router.get('/sql', (req, res) => {
 
 router.get('/dashboard', (req, res) => {
     res.render('dashboard')
+});
+router.get('/crossroad', (req, res) => {
+    res.render('crossroad')
+});
+router.get('/goal', (req, res) => {
+    res.render('goal')
 });
 
 module.exports = router;
