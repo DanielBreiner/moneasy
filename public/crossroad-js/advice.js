@@ -1,10 +1,11 @@
 function getUserCurAdvice(cb) {
+    
     $.ajax({
         "url": "/advice",
         "contentType": "application/json",
         "success": function (res) {
-            if ("curadvice" in res[0]){
-                cb(res[0]["curadvice"])
+            if (typeof res === "number"){
+                cb(res);
             }
         }
     });
@@ -18,8 +19,18 @@ function getAdvice(num, cb) {
         "data": {"advice": num},
         "success": function (res) {
             if ("quote" in res[0]){
-                cb(res[0].quote)
+                cb(res[0].quote);
             }
         }
     });
+}
+
+function readAdvice(){
+    $.ajax({
+        "url": "/advice",
+        "method": "GET",
+        "contentType": "application/json",
+        "data": {"read": 1}
+    });
+
 }

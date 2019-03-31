@@ -1,7 +1,7 @@
 function select() { //NOTE(DanoB) Changes the options in form select
     let el = $("form #radio-data");
 
-    if ($("form input[type=checkbox]").is(':checked')) {
+    if (!$("form input[type=checkbox]").is(':checked')) {
         el.html(`\
             <div class='radio-box'>\
             <input checked="checked" id="food" type="radio" name="categories" value="food" />\
