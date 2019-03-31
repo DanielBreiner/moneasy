@@ -34,8 +34,11 @@ router.post("/sql", (req, res) => {
 });
 
 router.delete('/sql', (req, res) => {
-    console.log(req.query);
-    console.log(req.body);
+    if (req.body.id){
+        sql.requestRaw(`DELETE FROM public.spending WHERE id=${req.body.id};`, function() {
+            res.send(true);
+        });
+    }
     
 });
 
