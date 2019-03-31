@@ -6,8 +6,6 @@ function main(c) {
 }
 
 function requestRaw(query, callback) {
-    console.log(query);
-    
     client = connect();
     client.query(query, (err, res) => {
         if (err) throw err;

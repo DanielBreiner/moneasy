@@ -13,7 +13,7 @@ function get() {
                 if (item["id"]) classes.push("id" + item["id"]);
                 table.append(`\
                     <tr ${(classes.length>0) ? `class="${classes.join(" ")}"`: '' }>\
-                        <td>${dateUse.getDate() + "." + dateUse.getMonth()+1 + "." + dateUse.getFullYear()}</td>\
+                        <td>${dateUse.getDate() + "." + (dateUse.getMonth()+1) + "." + dateUse.getFullYear()}</td>\
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
@@ -38,27 +38,26 @@ function post() {
     } else {
         data["credit"] = false;
     }
-    console.log(data);
-    
-
-    $.ajax({
-        "url": "/sql",
-        "method": "POST",
-        "content-type": "application/json",
-        "data": data,
-        "success": function (res) {
-            console.log(res);
-            
-            if (res) {
-                $("form").trigger("reset");
-                get();
-                //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
-            } else {
-                console.log(res)
-                //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+    if (data["amount"] && data["note"]){
+        $.ajax({
+            "url": "/sql",
+            "method": "POST",
+            "content-type": "application/json",
+            "data": data,
+            "success": function (res) {
+                console.log(res);
+                
+                if (res) {
+                    $("form").trigger("reset");
+                    get();
+                    //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
+                } else {
+                    console.log(res)
+                    //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function removeLinks() {
