@@ -1,51 +1,56 @@
 </head>
+
 <body class="dashboard">
-<form method="GET" action="/sql">
-    <label for="credit">Income</label>
-    <input type="checkbox" name="credit">
-    <div id='radio-data'>
-        <!-- tu pojdu data  radiobox-->
-    </div>
-    <input type="number" placeholder="amount" name="amount" step="0.01">
-    <input type="text" placeholder="note" name="note">
-</form>
-<button id="submit">Submit</button>
+    <section class="spend-form">
+        <form method="GET" action="/sql">
+            <label for="credit">Income</label>
+            <input type="checkbox" name="credit">
+            <div id='radio-data'>
+                <!-- tu pojdu data  radiobox-->
+            </div>
+            <input type="number" placeholder="amount" name="amount" step="0.01">
+            <input type="text" placeholder="note" name="note">
+        </form>
+        <button id="submit">Submit</button>
+    </section>
 
+    <section class="chart" style='width: 350px; height: 400px; display: block;'>
+        <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
+        <canvas id='pieChart'>
+        </canvas>
+    </section>
 
-<div style='width: 350px; height: 400px; display: block;'>
-    <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
-    <canvas id='pieChart'>
-    </canvas>
-</div>
+    <section class="expenses-table">
+        <table id="expenses">
+            <thead></thead>
+            <tbody>
 
-<table id="expenses">
-    <thead></thead>
-    <tbody>
+            </tbody>
+        </table>
+    </section>
+    
+    <script src="dashboard-js/ajax.js"></script>
+    <script src="dashboard-js/piechart.js"></script>
+    <script src="dashboard-js/select.js"></script>
+    <script>
+        $(function () {
+            piechart()
 
-    </tbody>
-</table>
-<script src="dashboard-js/ajax.js"></script>
-<script src="dashboard-js/piechart.js"></script>
-<script src="dashboard-js/select.js"></script>
-<script>
-    $(function () {
-        piechart()
+            //NOTE(DanoB) adding ajax onclick listener
+            $("#get").on("click", function () {
+                get();
+            })
 
-        //NOTE(DanoB) adding ajax onclick listener
-        $("#get").on("click", function () {
+            $("#submit").on("click", function () {
+                post();
+            })
+
+            $("form input[type=checkbox]").change(function () {
+                select();
+            });
+
             get();
-        })
-
-        $("#submit").on("click", function () {
-            post();
-        })
-
-        $("form input[type=checkbox]").change( function() {
             select();
         });
-
-        get();
-        select();
-    });
-</script>
+    </script>
 </body>

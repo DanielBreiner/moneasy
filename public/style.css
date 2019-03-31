@@ -132,6 +132,15 @@ body {
     align-items: center;
 }
 
+.expenses-table {
+    background: #23bf76;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    color: #fff;
+}
+
 /* QUERIES */
 
 @media all and (max-width: 1024px) {
