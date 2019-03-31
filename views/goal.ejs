@@ -2,8 +2,10 @@
 
 <body>
     <main id='main-goal'>
+        <p class="logo-crs logo-dash">
+            <a href="crossroad"><img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs"></a>
+        </p>
         <section id='progress-section'>
-            <img src='img/moneasy_cloud.png' />
             <!-- hlavny goal-->
             <div class='progress-wrapper'>
                 <!--<div class='progress-bar'>
@@ -18,10 +20,13 @@
             </div>
         </section>
         <section id='form-section'>
-            <form method="POST" action='/sql'>
-                <input type='text' name='name'/>
-                <input type='number' name='end' />
-                <input type='submit' />
+            <form method="POST" action='/sql' class="spend-input goal-form">
+                <div class="goal-input"> 
+                    <input type='text' name='name' placeholder="Name of goal"/>
+                </div>
+                <div class="goal-input">
+                    <input type='number' name='end' placeholder="Goal amount"/>
+                </div>
             </form>
             <button id='submit'>Submit</button>
         </section>

@@ -8,9 +8,6 @@
     text-decoration: none;
     cursor: pointer;
 }
-#form-section{
-
-}
 .label {
     cursor: pointer;
     background-size: contain;
@@ -30,26 +27,30 @@
 }
 
 .progress-bar {
-    width: 50%;
-    margin: 5px;
-    border-bottom: 1px solid black;
+    width: 40%;
+    display: block;
+    margin-bottom: 3vh;
+    border-bottom: 5px solid #fff;
+    background: url("img/goal_coins_start.png") bottom left no-repeat,
+    url("img/goal_coins.png") bottom right no-repeat;
+    background-size: 2vh, 7vh;
 }
 
 .progress {
     width: 55%;
-    height: 30px;
+    height: 100px;
     display: inline-block;
-    background: #afafaf url('/img/wheelbarrow.png') no-repeat right bottom;
-    background-size: 60px 30px;
+    background: url('/img/wheelbarrow.png') no-repeat right bottom;
+    background-size: 5vh;
     float: left;
 }
 
 #main-goal {
     display: flex;
     flex-direction: column;
-    padding: 8vh;
-    background: #cfeffc url('img/cross_bg.png') repeat-x bottom;
-    height: 100vh;
+    padding: 5vh;
+    background: url('img/cross_bg.png') repeat-x bottom #cfeffc;
+    min-height: 100vh;
 }
 
 #main-goal section,
@@ -57,13 +58,11 @@
     width: 100%;
 }
 
-#progress-section {
-
-}
 .progress-wrapper{
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .progress-end{
     width: 60px;
@@ -80,13 +79,12 @@
     .label img {
         height: 15vw;
     }
+    .progress-bar {
+        width: 100%;
+    }
 }
 
 .progress-end img{
     width: inherit;
     height: inherit;
-}
-#progress-section img{
-    width: 50vh;
-    margin-bottom: 5vh;
 }

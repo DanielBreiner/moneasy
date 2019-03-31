@@ -304,6 +304,25 @@ input.apple-switch:checked:after {
     box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
 }
 
+/* GOALs */
+
+.goal-input {
+    margin-bottom: 2vh;
+}
+
+.goal-input:last-child {
+    margin-bottom: 0;
+}
+
+.goal-input input {
+    font-size: 30px;
+    width: 240px;
+}
+
+.goal-form {
+    margin: 3vh 0;
+}
+
 /* QUERIES */
 
 @media all and (max-width: 1024px) {
@@ -415,6 +434,11 @@ input.apple-switch:checked:after {
         margin: 4vh 6vh 4vh 4vh;
         padding: 5.9vh;
         padding-right: 7vh;
+    }
+
+    .goal-input input {
+        font-size: 44px;
+        width: 70%;
     }
       
 }
