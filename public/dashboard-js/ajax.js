@@ -13,7 +13,7 @@ function get() {
                 if (item["id"]) classes.push("id" + item["id"]);
                 table.append(`\
                     <tr ${(classes.length>0) ? `class="${classes.join(" ")}"`: '' }>\
-                        <td>${dateUse.getDate() + "." + dateUse.getMonth() + "." + dateUse.getFullYear()}</td>\
+                        <td>${dateUse.getDate() + "." + dateUse.getMonth()+1 + "." + dateUse.getFullYear()}</td>\
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
