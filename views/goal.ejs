@@ -19,7 +19,7 @@
         </section>
         <section id='form-section'>
             <form method="POST" action='/sql'>
-                <input type='text' name='name'/>
+                <input type='text' name='valuee'/>
                 <input type='number' name='end' />
                 <input type='submit' />
             </form>
@@ -30,15 +30,18 @@
         //$('.progress').css('width', '40%');
         //ziskavanie momentalneho stavu uctu z database
         var currentMoney = 0;
-        $.ajax({ //NOTE(DanoB) Read advice
-            "url": "/sql",
-            "contentType": "application/json",
-            "success": function (res) {
-                res.forEach((item) => {
-                    currentMoney += item["spent"];
-                });
-            }
-        });
+        function a(){
+            $.ajax({ //NOTE(DanoB) Read advice
+                "url": "/sql",
+                "contentType": "application/json",
+                "success": function (res) {
+                    res.forEach((item) => {
+                        currentMoney += item["spent"];
+                    });
+                }
+            });
+            post();
+    }
         //post metoda
         function post() {
             let data = {};
@@ -75,7 +78,6 @@
                     if (res) {
                         let inside = $('.progress-wrapper').html("");
                         res.forEach((item) => {
-                            console.log(res)
                             inside.append(`
                             <div class='progress-bar'>\
                             <div class='progress'>\
@@ -95,7 +97,7 @@
             });
         }
         $("#submit").on("click", function () {
-                post();
+                a();
             })
         get()
     </script>
