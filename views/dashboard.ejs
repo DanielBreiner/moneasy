@@ -4,8 +4,10 @@
     <section class="spend-form">
         <form method="GET" action="/sql">
             <div class="credit-checkbox">
-                <label for="credit">Income</label>
-                <input type="checkbox" name="credit">
+                <!-- <label for="credit">Income</label> -->
+                Expense
+                <input type="checkbox" name="credit" class="apple-switch">
+                Income
             </div>
             <div class="spend-input">
                 <input type="number" placeholder="amount" name="amount">
@@ -17,11 +19,11 @@
                 <input type="text" placeholder="note" name="note">
             </div>
         </form>
-        <img src="img/submit.svg" id="submit"></img>
+        <img src="img/minus.svg" id="submit"></img>
     </section>
 
     <section class="chart">
-        <div style='width: 350px; height: 400px; display: block;'>
+        <div class="chart-wrapper">
             <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
             <canvas id='pieChart'>
             </canvas>
@@ -56,10 +58,10 @@
                 select();
 
                 if ($("form input[type=checkbox]").is(":checked")) {
-                    $("#submit").attr("src","img/minus.svg");
+                    $("#submit").attr("src","img/submit.svg");
                 }
                 else {
-                    $("#submit").attr("src","img/submit.svg");
+                    $("#submit").attr("src","img/minus.svg");
                 }
             });
 
