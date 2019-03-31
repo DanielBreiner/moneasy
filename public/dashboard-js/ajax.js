@@ -5,6 +5,7 @@ function get() {
         "contentType": "application/json",
         "success": function (res) {
             let table = $("#expenses tbody").html("");
+            piechart(res)
             res.forEach(function (item) {
                 let dateUse = new Date(Number(item["date"]));
                 table.append(`\
@@ -33,6 +34,8 @@ function post() {
     } else {
         data["credit"] = false;
     }
+    console.log(data);
+    
 
     $.ajax({
         "url": "/sql",
@@ -40,6 +43,8 @@ function post() {
         "content-type": "application/json",
         "data": data,
         "success": function (res) {
+            console.log(res);
+            
             if (res) {
                 $("form").trigger("reset");
                 get();
@@ -51,4 +56,3 @@ function post() {
         }
     });
 }
-

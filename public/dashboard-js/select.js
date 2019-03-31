@@ -4,7 +4,7 @@ function select() { //NOTE(DanoB) Changes the options in form select
     if (!$("form input[type=checkbox]").is(':checked')) {
         el.html(`\
             <div class='radio-box'>\
-            <input checked="checked" id="food" type="radio" name="categories" value="food" />\
+            <input checked="checked" id="food" type="radio" name="category" value="food" />\
             <label class='label img' for='food'><img src='img/pizza.svg'></label>\
             <input id="books" type="radio" name="categories" value="books" />\
             <label class='label img' for='books'><img src='img/books.svg'></label>\
@@ -22,7 +22,7 @@ function select() { //NOTE(DanoB) Changes the options in form select
     } else {
         el.html(`\
             <div class='radio-box'>\
-            <input checked="checked" id="pocketMoney" type="radio" name="categories" value="pocketMoney" />\
+            <input checked="checked" id="pocketMoney" type="radio" name="category" value="pocketMoney" />\
             <label class='label img' for='pocketMoney'><img src='img/money-wings.svg'></label>\
             <input id="gift" type="radio" name="categories" value="gift" />\
             <label class='label img' for='gift'><img src='img/gift.svg'></label>\
