@@ -8,7 +8,7 @@ function get() {
             res.forEach(function (item) {
                 table.append(`\
                     <tr>\
-                        <td>${item["date"]}</td>\
+                        <td>${new Date(Number(item["date"])).toDateString()}</td>\
                         <td>${item["spent"]}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
