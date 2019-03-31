@@ -6,8 +6,11 @@
 
 .img {
     background-image: url(http://picsum.photos/25);
-}
 
+}
+.link{
+    text-decoration: none;
+}
 .label {
     cursor: pointer;
     background-size: contain;
@@ -29,25 +32,26 @@
 
 .progress {
     width: 55%;
-    background-color: red;
     height: 30px;
     display: inline-block;
+    background: #afafaf url('/img/wheelbarrow.png') no-repeat right bottom;
+    background-size: 60px 30px;
     float: left;
 }
 
-.main-goal {
+#main-goal {
     display: flex;
     flex-direction: column;
     padding: 15px;
+    background: #cfeffc;
 }
 
-.main-goal section,
-.main-goal form {
+#main-goal section,
+#main-goal form {
     width: 100%;
 }
 
 #progress-section {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -59,9 +63,15 @@
     align-content: center;
 }
 .progress-end{
-    width: 20px;
+    width: 60px;
     height: 30px;
-    background-color: green;
-    display: inline-block;
+    display: none;
     float: left;
+}
+.progress-end img{
+    width: inherit;
+    height: inherit;
+}
+#progress-section img{
+    width: 50vh;
 }
