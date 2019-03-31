@@ -73,7 +73,8 @@
         let data = {};
         data['goal'] = true;
 
-        function get(){
+        var getData;
+        function get(cb = null){
             $.ajax({
                 "url": "/sql",
                 "method": "GET",
@@ -81,6 +82,9 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
+                        if (cb){
+                            cb(res);
+                        }
                         let inside = $('.progress-wrapper').html("");
                         res.forEach((item) => {
                             inside.append(`
@@ -104,6 +108,22 @@
         $("#submit").on("click", function () {
                 a();
             })
-        get()
+
+            function advice() {
+                $.ajax({ //NOTE(DanoB) Increment curadvice
+                    "url": "/smartadvice",
+                    "method": "GET",
+                    "contentType": "application/json",
+                    "success": function(data){
+                        console.log(data);
+                    }
+                });
+            }
+
+
+        $(function() {
+            get();
+            advice();
+        })
     </script>
 </body>

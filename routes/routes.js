@@ -73,12 +73,45 @@ router.get('/sql', (req, res) => {
             res.set('Content-Type', 'application/json');
             res.send(data);
         })
-    }else {
+    } 
+        // sql.requestRaw("select (((round(date_part('epoch', now() ) ) )::bigint - ((round(date_part('epoch', now() ) ) )::bigint % 84000) ) / 84000) = ((1554020793558/1000 - (1554020793558/1000 % 84000))/ 84000)", function(data)) //NOTE(Is today)
+
+    else {
     sql.requestRaw("SELECT * FROM public.spending ORDER BY date DESC;", function (data) {
         res.set('Content-Type', 'application/json');
         res.send(data);
     })
 }
+});
+
+router.get('/smartadvice', (req, res) => {
+    let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
+    sql.requestRaw(`SELECT text FROM public.smartadvice WHERE id=(SELECT (SELECT curgoaladvice FROM public.users WHERE name='${username}') % (SELECT COUNT(*) FROM public.smartadvice) + 1);`, function (data) {
+        console.log(data);
+        
+        if (data[0]["text"].match(/\$.*?\$/)){
+            console.log("here1");
+            if (data[0]["text"].includes("$today$")){
+                console.log("here2");
+                
+                sql.requestRaw("select (select sum(spent) from spending WHERE datenew > CURRENT_DATE - interval '1 day') as a from spending limit 1;", function(data2){
+                    console.log(data2);
+                    
+                    final = {"data": data[0]["text"].replace("$today$", Object.values(data2[0])[0])};
+                    console.log(final);
+                    res.set('Content-Type', 'application/json');
+                    res.send(final);
+                    sql.requestRaw(`UPDATE users SET curgoaladvice = curgoaladvice + 1 WHERE name='${username}';`, function(r) {console.log(r)});
+                });
+            }
+        } else {
+            res.set('Content-Type', 'application/json');
+            res.send(data[0]);
+            sql.requestRaw(`UPDATE users SET curgoaladvice = curgoaladvice + 1 WHERE name='${username}';`, function(r) {console.log(r)});
+        }
+        
+    });
+
 });
 
 router.get('/advice', (req, res) => {
