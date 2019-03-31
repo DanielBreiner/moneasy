@@ -7,8 +7,8 @@ function main(c){
 
 function insert(table, data, callback){
     client = connect(); 
-    
-    client.query(`INSERT INTO public.${table} VALUES ('${data["name"]}', ${data["start"]}, '${data["end"]}', ${data["date"]}, (SELECT (select max(id) from goal) +1));`, (err, res) => {
+
+    client.query(`INSERT INTO public.${table} VALUES ('admin', ${data["start"]}, ${data["end"]}, ${data["date"]}, (SELECT (select max(id) from goal) +1), '${data["note"]}' );`, (err, res) => {
         if (err) throw err;
         client.end();        
         callback(res.rowCount == 1);
