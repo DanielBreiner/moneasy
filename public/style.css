@@ -13,7 +13,7 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* INDEX */
@@ -143,6 +143,33 @@ body {
 
 .go-to-goal .cloud-crs {
     margin-right: 10vw;
+}
+
+#seen-advice {
+    display: inline-block;
+    color: #4ED164;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+#seen-advice:hover {
+    cursor: pointer;
+}
+
+#seen-advice.hidden-seen {
+    opacity: 0;
+}
+
+.cloud-advice {
+    width: 50%;
+    font-size: 4.3vh;
+    margin: 6vh 12vh 6vh 6vh;
+    padding: 8.6vh;
+}
+
+#advice-content {
+    margin-top: 0;
+    margin-bottom: 1.5vh;
 }
 
 /* DASHBOARD */
@@ -380,6 +407,14 @@ input.apple-switch:checked:after {
 
     .chart {
         background-size: 30%, contain;
+    }
+
+    .cloud-advice {
+        width: 85%;
+        font-size: 3.4vh;
+        margin: 4vh 6vh 4vh 4vh;
+        padding: 5.9vh;
+        padding-right: 7vh;
     }
       
 }
