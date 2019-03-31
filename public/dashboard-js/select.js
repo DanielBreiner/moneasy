@@ -7,7 +7,7 @@ function select() { //NOTE(DanoB) Changes the options in form select
             <input checked="checked" id="food" type="radio" name="categories" value="food" />\
             <label class='label img' for='food'></label>\
             <input id="books" type="radio" name="categories" value="books" />\
-            <label class='label img' for='books'></label>\
+            <label class='label img' for='books'><img src='img/books.svg'></label>\
             <input id="sweets" type="radio" name="categories" value="sweets" />\
             <label class='label img' for='sweets'></label>\
             <input id="toys and games" type="radio" name="categories" value="toys and games" />\
