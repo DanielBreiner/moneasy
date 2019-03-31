@@ -32,10 +32,29 @@ router.post("/sql", (req, res) => {
 });
 
 router.get('/sql', (req, res) => {
-    sql.request("spending", function (data) {
+    sql.requestAll("spending", function (data) {
         res.set('Content-Type', 'application/json');
         res.send(data);
     })
+});
+
+router.get('/advice', (req, res) => {
+    let keys = Object.keys(req.query);
+    
+    if (keys.length > 0) {
+        if (keys.includes("advice")){
+            sql.requestRaw(`SELECT quote FROM public.advice WHERE id=${req.query["advice"]};`, function(data) {
+                res.set('Content-Type', 'application/json');
+                res.send(data);
+            })
+        }
+    } else {
+        let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
+        sql.requestRaw(`SELECT curadvice FROM public.users WHERE name='${username}';`, function (data) {
+            res.set('Content-Type', 'application/json');
+            res.send(data);
+        })
+    }
 });
 
 router.get('*', (req, res) => {

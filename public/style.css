@@ -132,6 +132,38 @@ body {
     align-items: center;
 }
 
+.expenses-table {
+    background: #23bf76;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 3% 0;
+    color: #fff;
+}
+
+#expenses {
+    border-collapse: collapse;
+    width: 540px;
+    font-size: 20px;
+}
+
+#expenses td {
+    height: 7vh;
+    padding: 7px;
+}
+
+#expenses tr {
+    border-bottom: 1px solid #fff;
+}
+
+#expenses tr:last-child {
+    border: none;
+}
+
+.spend {
+    background: #f45252;
+}
+
 /* QUERIES */
 
 @media all and (max-width: 1024px) {
@@ -186,6 +218,11 @@ body {
     .cloud-text {
         margin: 7% 11% 7% 7%;
         font-size: 4.8vw;
+    }
+
+    #expenses {
+        width: 100vw;
+        font-size: 38px;
     }
       
 }
