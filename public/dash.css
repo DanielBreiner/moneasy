@@ -58,9 +58,6 @@
 }
 
 #progress-section {
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
 
 }
 .progress-wrapper{
@@ -91,4 +88,5 @@
 }
 #progress-section img{
     width: 50vh;
+    margin-bottom: 5vh;
 }
