@@ -4,7 +4,8 @@
     <p class="logo-crs">
         <img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs">
     </p>
-    <section>
+    <section id="advice" class="hidden"></section>
+    <section id="noadvice">
         <div class="land-of-spend">
             <a href="dashboard" class="cloud-crs">
                 <p class="cloud-text-crs">
@@ -21,4 +22,21 @@
         </div>
     </section>
     <script src="crossroad-js/advice.js"></script>
+    <script>
+    $(function() {
+        getUserCurAdvice(function(num){
+            getAdvice(num, function(data){
+                if (!data){ //NOTE(DanoB) If data is false, keep advice hidden
+                    $("#advice").addClass("hidden");
+                    $("#noadvice").removeClass("hidden");
+                }
+                else {
+                    $("#advice").html(data)
+                    $("#advice").removeClass("hidden");
+                    $("#noadvice").addClass("hidden");
+                }
+            });
+        });
+    })
+    </script>
 </body>
