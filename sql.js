@@ -11,5 +11,6 @@ module.exports = {
     "insert": require("./sql/insert.js")(connect),
     "request": require("./sql/request.js")(connect),
     "requestAll": require("./sql/requestAll.js")(connect),
-    "requestRaw": require("./sql/requestRaw.js")(connect)
+    "requestRaw": require("./sql/requestRaw.js")(connect),
+    "insertGoal": require("./sql/insertGoal.js")(connect)
 }

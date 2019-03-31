@@ -21,6 +21,7 @@ function get() {
                     </tr>\
                     `)
             });
+            removeLinks()
         }
     });
 }
@@ -60,15 +61,24 @@ function post() {
     });
 }
 
-function del() {
-    
+function removeLinks() {
+    $(".link").on("click", function() {
+        del($(this))
+    });
+}
+
+
+function del(src) {
     $.ajax({
         "url": "/sql",
         "method": "DELETE",
         "content-type": "application/json",
-        "data": data,
+        "data": {"id": src.parent().parent().attr("class").split(' ').find(value => /^id/.test(value)).replace("id","")},
         "success": function (res) {
-            console.log(res);
+            if (res) { //NOTE(DanoB) On success
+                console.log(res);
+                get();
+            }
         }
     });
 }

@@ -28,22 +28,55 @@ router.post("/sql", (req, res) => {
                 }
             }
         );
-    } else {
+
+        } else if(req.body.end && req.body.currentMoney){
+            let name = 'admin' //NOTE(DanoB) Replace when login is working
+            let date = new Date().getTime();
+            let end = req.body.end;
+            let start = req.body.currentMoney;
+
+            sql.insertGoal(
+                "goal",
+                {
+                    "name": name,
+                    "start": start,
+                    "end": end,
+                    "date": date,
+                },
+                function (succ) {
+                    if (succ) {
+                        res.send(succ)
+                    }
+                }
+            );
+
+        } 
+     else {
         res.sendStatus(500);
     }
 });
 
 router.delete('/sql', (req, res) => {
-    console.log(req.query);
-    console.log(req.body);
+    if (req.body.id){
+        sql.requestRaw(`DELETE FROM public.spending WHERE id=${req.body.id};`, function() {
+            res.send(true);
+        });
+    }
     
 });
 
 router.get('/sql', (req, res) => {
+    if (req.query.goal){
+        sql.requestRaw("SELECT * FROM public.goal ORDER BY date DESC;", function (data) {
+            res.set('Content-Type', 'application/json');
+            res.send(data);
+        })
+    }else {
     sql.requestRaw("SELECT * FROM public.spending ORDER BY date DESC;", function (data) {
         res.set('Content-Type', 'application/json');
         res.send(data);
     })
+}
 });
 
 router.get('/advice', (req, res) => {

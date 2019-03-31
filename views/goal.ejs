@@ -6,26 +6,97 @@
             <img src='img/moneasy_cloud.png' />
             <!-- hlavny goal-->
             <div class='progress-wrapper'>
-                <div class='progress-bar'>
-                    <!-- progress bar -->
+                <!--<div class='progress-bar'>
+                    progress bar 
                     <div class='progress'>
 
                     </div>
                     <div class='progress-end'>
                         <img src='img/wheelbarrow.png'>
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
         <section id='form-section'>
-            <form>
-                <input type='text' />
-                <input type='number' />
+            <form method="POST" action='/sql'>
+                <input type='text' name='name'/>
+                <input type='number' name='end' />
                 <input type='submit' />
             </form>
+            <button id='submit'>Submit</button>
         </section>
     </main>
     <script>
-        $('.progress').css('width', '40%');
+        //$('.progress').css('width', '40%');
+        //ziskavanie momentalneho stavu uctu z database
+        var currentMoney = 0;
+        $.ajax({ //NOTE(DanoB) Read advice
+            "url": "/sql",
+            "contentType": "application/json",
+            "success": function (res) {
+                res.forEach((item) => {
+                    currentMoney += item["spent"];
+                });
+            }
+        });
+        //post metoda
+        function post() {
+            let data = {};
+            $('form').serializeArray().forEach((item) => {
+                if(item){
+                data[item['name']] = item['value']
+                }
+            })
+            data['currentMoney'] = currentMoney;
+            $.ajax({
+                "url": "/sql",
+                "method": "POST",
+                "content-type": "application/json",
+                "data": data,
+                "success": function (res) {
+                    if (res) {
+                        get()
+                    } else {
+                        //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+                    }
+                }
+            });
+        }
+        let data = {};
+        data['goal'] = true;
+
+        function get(){
+            $.ajax({
+                "url": "/sql",
+                "method": "GET",
+                "content-type": "application/json",
+                "data": data,
+                "success": function (res) {
+                    if (res) {
+                        let inside = $('.progress-wrapper').html("");
+                        res.forEach((item) => {
+                            console.log(res)
+                            inside.append(`
+                            <div class='progress-bar'>\
+                            <div class='progress'>\
+
+                            </div>\
+                            <div class='progress-end'>\
+                            <img src='img/wheelbarrow.png'>\
+                            </div>\
+                            </div> \
+                            `)
+                        })
+                    } else {
+                        console.log(res)
+                        //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+                    }
+                }
+            });
+        }
+        $("#submit").on("click", function () {
+                post();
+            })
+        get()
     </script>
 </body>
