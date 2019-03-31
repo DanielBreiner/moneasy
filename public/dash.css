@@ -1,19 +1,67 @@
-.radio-box input{
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
+.radio-box input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
-.img{
-    background-image:url(http://picsum.photos/25);
+
+.img {
+    background-image: url(http://picsum.photos/25);
 }
-.label{
-    cursor:pointer;
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    width:25px;
-    height:25px;
+
+.label {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
 }
-.radio-box input:checked + .label {
+
+.radio-box input:checked+.label {
     border: 1px solid red;
+}
+
+.progress-bar {
+    width: 50%;
+    margin: 5px;
+    border-bottom: 1px solid black;
+}
+
+.progress {
+    width: 55%;
+    background-color: red;
+    height: 30px;
+    display: inline-block;
+    float: left;
+}
+
+.main-goal {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.main-goal section,
+.main-goal form {
+    width: 100%;
+}
+
+#progress-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+.progress-wrapper{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.progress-end{
+    width: 20px;
+    height: 30px;
+    background-color: green;
+    display: inline-block;
+    float: left;
 }
