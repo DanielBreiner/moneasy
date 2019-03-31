@@ -316,7 +316,7 @@ input.apple-switch:checked:after {
 
 .goal-input input {
     font-size: 30px;
-    width: 240px;
+    width: 320px;
 }
 
 .goal-form {
@@ -334,6 +334,22 @@ input.apple-switch:checked:after {
 
 .progress-wrapper .progress-bar:first-child .progress {
     width: 29%;
+}
+
+.goal-advice {
+    background: url("img/cloud.png") no-repeat center;
+    background-size: contain;
+}
+
+.goal-advice {
+    font-size: 2.5vw;
+    padding: 6vw 36vw 6vw 31vw;
+}
+
+.goal-lady {
+    height: 27vh;
+    background: url("img/lady_cross.png") bottom center no-repeat;
+    background-size: contain;
 }
 
 /* QUERIES */
@@ -462,7 +478,14 @@ input.apple-switch:checked:after {
     #form-section {
         margin-top: 1vh;
     }
+
+    .goal-advice {
+        font-size: 2.5vh;
+        padding: 6vh 10vh 6vh 7vh;
+        margin: 3vh -10vh 3vh 2vh;
+    }
       
+    
 }
 
 @media all and (max-width: 600px) {
