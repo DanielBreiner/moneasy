@@ -132,6 +132,36 @@ body {
     align-items: center;
 }
 
+.expenses-table {
+    background: #23bf76;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 3% 0;
+    color: #fff;
+}
+
+#expenses {
+    border-collapse: collapse;
+}
+
+#expenses td {
+    height: 6vh;
+    padding: 7px;
+}
+
+#expenses tr {
+    border-bottom: 1px solid #fff;
+}
+
+#expenses tr:last-child {
+    border: none;
+}
+
+.spend {
+    background: #f45252;
+}
+
 /* QUERIES */
 
 @media all and (max-width: 1024px) {
