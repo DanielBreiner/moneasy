@@ -230,6 +230,10 @@ body {
     display: block;
 }
 
+.logo-dash {
+    margin-bottom: 4vh;
+}
+
 input.apple-switch {
     position: relative;
     -webkit-appearance: none;
