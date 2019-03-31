@@ -38,6 +38,13 @@ router.get('/sql', (req, res) => {
     })
 });
 
+router.get('/advice', (req, res) => {
+    sql.request("advice", function (data) {
+        res.set('Content-Type', 'application/json');
+        res.send(data);
+    })
+});
+
 router.get('*', (req, res) => {
     switch (req.originalUrl) {
         case "/":
