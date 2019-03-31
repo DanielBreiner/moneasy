@@ -2,13 +2,13 @@ var connect;
 
 function main(c) {
     connect = c;
-    return request;
+    return requestRaw;
 }
 
-function request(table, columns, callback) {
+function requestRaw(query, callback) {
     client = connect();
 
-    client.query(`SELECT ${columns.join(",")} FROM ${table}`, (err, res) => {
+    client.query(query, (err, res) => {
         if (err) throw err;
         client.end();
         callback(res.rows);
