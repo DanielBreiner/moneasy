@@ -5,7 +5,7 @@ function getAdvice(cb) {
         "contentType": "application/json",
         "data": {"timediff": 1},
         "success": function (res) {            
-            if (Object.values(res[0])[0]- 25 > 0){ //NOTE(DanoB) New advice every 25 secs.
+            if (Object.values(res[0])[0]- 60 > 0){ //NOTE(DanoB) New advice every 25 secs.
                 $.ajax({ //NOTE(DanoB) Read advice
                     "url": "/advice",
                     "contentType": "application/json",
