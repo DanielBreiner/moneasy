@@ -20,7 +20,7 @@ router.post("/sql", (req, res) => {
                 "category": category,
                 "amount": amount,
                 "note": note,
-                "date": date
+                "date": date,
             },
             function (succ) {
                 if (succ) {
@@ -34,14 +34,16 @@ router.post("/sql", (req, res) => {
             let date = new Date().getTime();
             let end = req.body.end;
             let start = req.body.currentMoney;
+            let note = req.body.valuee;
 
             sql.insertGoal(
                 "goal",
                 {
-                    "name": name,
+                    "user": "admin",
                     "start": start,
                     "end": end,
                     "date": date,
+                    "note": note,
                 },
                 function (succ) {
                     if (succ) {
