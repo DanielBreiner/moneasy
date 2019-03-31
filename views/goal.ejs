@@ -45,7 +45,7 @@
                     });
                 }
             });
-            post();
+        setTimeout(get(),3000);
     }
         //post metoda
         function post() {
@@ -63,7 +63,7 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
-                        get()
+                        setTimeout(get(),2000);
                     } else {
                         //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
                     }
@@ -83,9 +83,14 @@
                     if (res) {
                         let inside = $('.progress-wrapper').html("");
                         res.forEach((item) => {
+                            var start = item['start']
+                            var end = item['end']
+                            var math = Math.round(currentMoney / end * 100);
+                            var matString = math + '%';
+                            console.log(currentMoney)
                             inside.append(`
                             <div class='progress-bar'>\
-                            <div class='progress'>\
+                            <div id='${item['id']}' class='progress'>\
 
                             </div>\
                             <div class='progress-end'>\
@@ -96,6 +101,11 @@
                                 ${item['note']}
                             </div>\
                             `)
+                            if(matString < 2){
+                            $(`#${item['id']}`).css('width', '5%');
+                            }else{
+                            $(`#${item['id']}`).css('width', matString);
+                            }
                         })
                     } else {
                         console.log(res)
@@ -105,8 +115,8 @@
             });
         }
         $("#submit").on("click", function () {
-                a();
+                post()
             })
-        get()
+        a();
     </script>
 </body>
