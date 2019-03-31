@@ -34,6 +34,8 @@ function post() {
     } else {
         data["credit"] = false;
     }
+    console.log(data);
+    
 
     $.ajax({
         "url": "/sql",
@@ -41,6 +43,8 @@ function post() {
         "content-type": "application/json",
         "data": data,
         "success": function (res) {
+            console.log(res);
+            
             if (res) {
                 $("form").trigger("reset");
                 get();
