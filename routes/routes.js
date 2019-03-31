@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require("../sql");
 
-router.post("/sql", (req, res) => {
-    console.log(req.body);
-    
+router.post("/sql", (req, res) =>   {
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.body.category && req.body.amount) {
         let name = 'admin' //NOTE(DanoB) Replace when login is working
@@ -44,6 +42,19 @@ router.get('/advice', (req, res) => {
         if (keys.includes("read")) {
             let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
             sql.requestRaw(`UPDATE users SET curadvice = curadvice + 1 WHERE name='${username}';`, function(data) {
+                res.sendStatus(200);
+            })
+        } else if (keys.includes("timediff")){
+            let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
+            sql.requestRaw(`select ((select ((round(date_part('epoch', now() ) ) * 1000 ) ) ) - (select lastadvicetime FROM public.users WHERE name='${username}') )/ 1000`,
+            function(data){
+                res.set('Content-Type', 'application/json');
+                res.send(data);
+            });
+        } else if (keys.includes("date")) {
+            
+            let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
+            sql.requestRaw(`UPDATE users SET lastadvicetime=${new Date().getTime()} WHERE name='${username}';`, function(data) {
                 res.sendStatus(200);
             })
         }
