@@ -9,13 +9,13 @@
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     filter: grayscale(100);
 }
 
 .label img {
-    height: 24px;
+    height: 50px;
 }
 
 .radio-box input:checked+.label {
@@ -65,4 +65,14 @@
     background-color: green;
     display: inline-block;
     float: left;
+}
+
+@media all and (max-width: 1024px) {
+    .label {
+        width: 15vw;
+        height: 15vw;
+    }
+    .label img {
+        height: 15vw;
+    }
 }
