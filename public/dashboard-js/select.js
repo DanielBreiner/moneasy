@@ -23,11 +23,11 @@ function select() { //NOTE(DanoB) Changes the options in form select
         el.html(`\
             <div class='radio-box'>\
             <input checked="checked" id="pocketMoney" type="radio" name="categories" value="pocketMoney" />\
-            <label class='label img' for='pocketMoney'></label>\
+            <label class='label img' for='pocketMoney'><img src='img/money-wings.svg'></label>\
             <input id="gift" type="radio" name="categories" value="gift" />\
-            <label class='label img' for='gift'></label>\
+            <label class='label img' for='gift'><img src='img/gift.svg'></label>\
             <input id="chores" type="radio" name="categories" value="chores" />\
-            <label class='label img' for='chores'></label>\
+            <label class='label img' for='chores'><img src='img/chores.svg'></label>\
             </div>\
             `);
     }
