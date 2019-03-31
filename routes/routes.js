@@ -40,9 +40,6 @@ router.get('/sql', (req, res) => {
 
 router.get('/advice', (req, res) => {
     let keys = Object.keys(req.query);
-    console.log(keys);
-    
-    
     if (keys.length > 0) {
         if (keys.includes("advice")){
             sql.requestRaw(`SELECT quote FROM public.advice WHERE id=${req.query["advice"]};`, function(data) {
@@ -57,9 +54,9 @@ router.get('/advice', (req, res) => {
         }
     } else {
         let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
-        sql.requestRaw(`SELECT (SELECT curadvice FROM public.users WHERE name='${username}') % (SELECT COUNT(*) FROM public.advice);`, function (data) {
+        sql.requestRaw(`SELECT (SELECT curadvice FROM public.users WHERE name='${username}') % (SELECT COUNT(*) FROM public.advice) + 1;`, function (data) {
             res.set('Content-Type', 'application/json');
-            res.send(Object.values(data[0])[0]);
+            res.send(data);
         })
     }
 });

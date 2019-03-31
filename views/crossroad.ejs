@@ -25,7 +25,9 @@
     <script>
     $(function() {
         getUserCurAdvice(function(num){
+            console.log(num);
             getAdvice(num, function(data){
+                console.log(data);
                 if (!data){ //NOTE(DanoB) If data is false, keep advice hidden
                     $("#advice").addClass("hidden");
                     $("#noadvice").removeClass("hidden");
