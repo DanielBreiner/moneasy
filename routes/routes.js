@@ -34,8 +34,8 @@ router.post("/sql", (req, res) => {
             let date = new Date().getTime();
             let end = req.body.end;
             let start = req.body.currentMoney;
-            let note = req.body.valuee;
-
+            let note = req.body.name;
+            console.log(note)
             sql.insertGoal(
                 "goal",
                 {
