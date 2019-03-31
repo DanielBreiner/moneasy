@@ -8,9 +8,12 @@ function get() {
             piechart(res)
             res.forEach(function (item) {
                 let dateUse = new Date(Number(item["date"]));
+                classes = [];
+                if (item["spent"] < 0) classes.push("spend");
+                if (item["id"]) classes.push("id" + item["id"]);
                 table.append(`\
-                    <tr${(item["spent"] < 0) ? ' class="spend"' : ""}>\
-                        <td>${dateUse.getDate() + "." + dateUse.getMonth() + "." + dateUse.getFullYear()}</td>\
+                    <tr ${(classes.length>0) ? `class="${classes.join(" ")}"`: '' }>\
+                        <td>${dateUse.getDate() + "." + dateUse.getMonth()+1 + "." + dateUse.getFullYear()}</td>\
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
@@ -18,6 +21,7 @@ function get() {
                     </tr>\
                     `)
             });
+            removeLinks()
         }
     });
 }
@@ -34,6 +38,8 @@ function post() {
     } else {
         data["credit"] = false;
     }
+    console.log(data);
+    
 
     $.ajax({
         "url": "/sql",
@@ -41,6 +47,8 @@ function post() {
         "content-type": "application/json",
         "data": data,
         "success": function (res) {
+            console.log(res);
+            
             if (res) {
                 $("form").trigger("reset");
                 get();
@@ -48,6 +56,28 @@ function post() {
             } else {
                 console.log(res)
                 //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+            }
+        }
+    });
+}
+
+function removeLinks() {
+    $(".link").on("click", function() {
+        del($(this))
+    });
+}
+
+
+function del(src) {
+    $.ajax({
+        "url": "/sql",
+        "method": "DELETE",
+        "content-type": "application/json",
+        "data": {"id": src.parent().parent().attr("class").split(' ').find(value => /^id/.test(value)).replace("id","")},
+        "success": function (res) {
+            if (res) { //NOTE(DanoB) On success
+                console.log(res);
+                get();
             }
         }
     });

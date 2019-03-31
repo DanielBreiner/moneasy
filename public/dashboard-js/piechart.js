@@ -17,14 +17,14 @@ function piechart(a) {
                 label: 'money',
                 data: dataArr,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(54, 162, 235, 0.9)',
+                    '#f45d5d',
+                    '#23bf76',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
+                    '#fff',
+                    '#fff',
                 ],
-                borderWidth: 1
+                borderWidth: 5
             }]
         },
         options: {

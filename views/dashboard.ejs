@@ -1,27 +1,33 @@
 </head>
 
 <body class="dashboard">
+    
     <section class="spend-form">
+        <p class="logo-crs logo-dash">
+            <a href="crossroad"><img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs"></a>
+        </p>
         <form method="GET" action="/sql">
             <div class="credit-checkbox">
-                <label for="credit">Income</label>
-                <input type="checkbox" name="credit">
+                <!-- <label for="credit">Income</label> -->
+                Expense
+                <input type="checkbox" name="credit" class="apple-switch">
+                Income
             </div>
             <div class="spend-input">
-                <input type="number" placeholder="amount" name="amount" step="0.01">
+                <input type="number" placeholder="amount" name="amount">
             </div>
             <div id='radio-data'>
                 <!-- tu pojdu data  radiobox-->
             </div>
-            <div class="spend-input">
+            <div class="spend-input note">
                 <input type="text" placeholder="note" name="note">
             </div>
         </form>
-        <button id="submit">Submit</button>
+        <img src="img/minus.svg" id="submit"></img>
     </section>
 
     <section class="chart">
-        <div style='width: 350px; height: 400px; display: block;'>
+        <div class="chart-wrapper">
             <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
             <canvas id='pieChart'>
             </canvas>
@@ -54,7 +60,15 @@
 
             $("form input[type=checkbox]").change(function () {
                 select();
+
+                if ($("form input[type=checkbox]").is(":checked")) {
+                    $("#submit").attr("src","img/submit.svg");
+                }
+                else {
+                    $("#submit").attr("src","img/minus.svg");
+                }
             });
+
 
             get();
             select();
