@@ -255,6 +255,9 @@ body {
 
 .credit-checkbox {
     font-size: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chart-wrapper {
@@ -280,6 +283,7 @@ input.apple-switch {
     border-radius: 55px;
     box-shadow: inset -40px 0 0 0 #ffffff;
     transition-duration: 150ms;
+    margin: 0 2vw;
 }
 
 input.apple-switch:after {
@@ -330,10 +334,6 @@ input.apple-switch:checked:after {
 
 #form-section {
     margin-top: 3vh;
-}
-
-.progress-wrapper .progress-bar:first-child .progress {
-    width: 29%;
 }
 
 .goal-advice {
@@ -485,6 +485,9 @@ input.apple-switch:checked:after {
         margin: 3vh -10vh 3vh 2vh;
     }
       
+    .credit-checkbox {
+        font-size: 50px;
+    }
     
 }
 
