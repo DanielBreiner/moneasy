@@ -41,12 +41,7 @@ router.get('/sql', (req, res) => {
 router.get('/advice', (req, res) => {
     let keys = Object.keys(req.query);
     if (keys.length > 0) {
-        if (keys.includes("advice")){
-            sql.requestRaw(`SELECT quote FROM public.advice WHERE id=${req.query["advice"]};`, function(data) {
-                res.set('Content-Type', 'application/json');
-                res.send(data);
-            })
-        } else if (keys.includes("read")) {
+        if (keys.includes("read")) {
             let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
             sql.requestRaw(`UPDATE users SET curadvice = curadvice + 1 WHERE name='${username}';`, function(data) {
                 res.sendStatus(200);
@@ -54,7 +49,7 @@ router.get('/advice', (req, res) => {
         }
     } else {
         let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
-        sql.requestRaw(`SELECT (SELECT curadvice FROM public.users WHERE name='${username}') % (SELECT COUNT(*) FROM public.advice) + 1;`, function (data) {
+        sql.requestRaw(`SELECT quote FROM public.advice WHERE id=(SELECT (SELECT curadvice FROM public.users WHERE name='${username}') % (SELECT COUNT(*) FROM public.advice) + 1);`, function(data) {
             res.set('Content-Type', 'application/json');
             res.send(data);
         })
