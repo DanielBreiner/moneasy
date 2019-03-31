@@ -22,13 +22,22 @@
         <section id='form-section'>
             <form method="POST" action='/sql' class="spend-input goal-form">
                 <div class="goal-input"> 
-                    <input type='text' name='name' placeholder="Name of goal"/>
+                    <input type='text' name='name' placeholder="What I want?"/>
                 </div>
                 <div class="goal-input">
-                    <input type='number' name='end' placeholder="Goal amount"/>
+                    <input type='number' name='end' placeholder="How much do I need?"/>
                 </div>
             </form>
-            <button id='submit'>Submit</button>
+            <img src="img/submit.svg" id="submit"></img>
+            <!-- <button id='submit'>Submit</button> -->
+        </section>
+        <section id="advice" class="goal-advice">
+            <div class="">
+                <p id="advice-content">If you want to earn money, try working as your parents do. Deserve your money by doing household chores.</p>
+            </div>
+        </section>
+        <section class="goal-lady">
+
         </section>
     </main>
     <script>
@@ -45,7 +54,7 @@
                     });
                 }
             });
-            post();
+        setTimeout(get(),3000);
     }
         //post metoda
         function post() {
@@ -63,7 +72,7 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
-                        get()
+                        setTimeout(get(),2000);
                     } else {
                         //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
                     }
@@ -87,16 +96,31 @@
                         }
                         let inside = $('.progress-wrapper').html("");
                         res.forEach((item) => {
+                            var start = item['start']
+                            var end = item['end']
+                            var math = Math.round(currentMoney / end * 100);
+                            var matString = math + '%';
+                            console.log(currentMoney)
                             inside.append(`
                             <div class='progress-bar'>\
-                            <div class='progress'>\
+                            <div id='${item['id']}' class='progress'>\
 
                             </div>\
                             <div class='progress-end'>\
                             <img src='img/wheelbarrow.png'>\
                             </div>\
                             </div> \
+                            <div class='goal-name'>\
+                                ${item['note']}
+                            </div>\
                             `)
+                            if(math < 2){
+                                $(`#${item['id']}`).css('width', '5%');
+                            }else if(math > 98){
+                                $(`#${item['id']}`).css('width', '98%');
+                            }else{
+                                $(`#${item['id']}`).css('width', matString);
+                            }
                         })
                     } else {
                         console.log(res)
@@ -106,7 +130,7 @@
             });
         }
         $("#submit").on("click", function () {
-                a();
+                post()
             })
 
             function advice() {
@@ -119,11 +143,11 @@
                     }
                 });
             }
-
-
-        $(function() {
-            get();
-            advice();
-        })
+        
+        $(document).ready({
+            a()
+            advice()
+        }    
+    );
     </script>
 </body>

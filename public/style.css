@@ -255,6 +255,9 @@ body {
 
 .credit-checkbox {
     font-size: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chart-wrapper {
@@ -280,6 +283,7 @@ input.apple-switch {
     border-radius: 55px;
     box-shadow: inset -40px 0 0 0 #ffffff;
     transition-duration: 150ms;
+    margin: 0 2vw;
 }
 
 input.apple-switch:after {
@@ -316,11 +320,36 @@ input.apple-switch:checked:after {
 
 .goal-input input {
     font-size: 30px;
-    width: 240px;
+    width: 320px;
 }
 
 .goal-form {
     margin: 3vh 0;
+}
+
+.goal-name {
+    font-size: 28px;
+    color: #444;
+}
+
+#form-section {
+    margin-top: 3vh;
+}
+
+.goal-advice {
+    background: url("img/cloud.png") no-repeat center;
+    background-size: contain;
+}
+
+.goal-advice {
+    font-size: 2.5vw;
+    padding: 6vw 36vw 6vw 31vw;
+}
+
+.goal-lady {
+    height: 27vh;
+    background: url("img/lady_cross.png") bottom center no-repeat;
+    background-size: contain;
 }
 
 /* QUERIES */
@@ -440,7 +469,26 @@ input.apple-switch:checked:after {
         font-size: 44px;
         width: 70%;
     }
+
+    .goal-name {
+        font-size: 60px;
+        margin-bottom: 2.5vh;
+    }
+
+    #form-section {
+        margin-top: 1vh;
+    }
+
+    .goal-advice {
+        font-size: 2.5vh;
+        padding: 6vh 10vh 6vh 7vh;
+        margin: 3vh -10vh 3vh 2vh;
+    }
       
+    .credit-checkbox {
+        font-size: 50px;
+    }
+    
 }
 
 @media all and (max-width: 600px) {
