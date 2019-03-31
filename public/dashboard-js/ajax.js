@@ -8,9 +8,12 @@ function get() {
             piechart(res)
             res.forEach(function (item) {
                 let dateUse = new Date(Number(item["date"]));
+                classes = [];
+                if (item["spent"] < 0) classes.push("spend");
+                if (item["id"]) classes.push("id" + item["id"]);
                 table.append(`\
-                    <tr${(item["spent"] < 0) ? ' class="spend"' : ""}>\
-                        <td>${dateUse.getDate() + "." + (dateUse.getMonth()+1) + "." + dateUse.getFullYear()}</td>\
+                    <tr ${(classes.length>0) ? `class="${classes.join(" ")}"`: '' }>\
+                        <td>${dateUse.getDate() + "." + dateUse.getMonth()+1 + "." + dateUse.getFullYear()}</td>\
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
@@ -53,6 +56,19 @@ function post() {
                 console.log(res)
                 //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
             }
+        }
+    });
+}
+
+function del() {
+    
+    $.ajax({
+        "url": "/sql",
+        "method": "DELETE",
+        "content-type": "application/json",
+        "data": data,
+        "success": function (res) {
+            console.log(res);
         }
     });
 }
