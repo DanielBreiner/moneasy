@@ -10,6 +10,10 @@
 }
 .link{
     text-decoration: none;
+    cursor: pointer;
+}
+#form-section{
+
 }
 .label {
     cursor: pointer;
@@ -47,8 +51,9 @@
 #main-goal {
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    background: #cfeffc;
+    padding: 8vh;
+    background: #cfeffc url('img/cross_bg.png') repeat-x bottom;
+    height: 100vh;
 }
 
 #main-goal section,
