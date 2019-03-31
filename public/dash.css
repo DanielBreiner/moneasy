@@ -4,18 +4,25 @@
     appearance: none;
 }
 
+.link{
+    text-decoration: none;
+    cursor: pointer;
+}
+#form-section{
+
+}
 .label {
     cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     filter: grayscale(100);
 }
 
 .label img {
-    height: 24px;
+    height: 50px;
 }
 
 .radio-box input:checked+.label {
@@ -30,28 +37,27 @@
 
 .progress {
     width: 55%;
-    background-color: red;
     height: 30px;
     display: inline-block;
+    background: #afafaf url('/img/wheelbarrow.png') no-repeat right bottom;
+    background-size: 60px 30px;
     float: left;
 }
 
-.main-goal {
+#main-goal {
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 8vh;
+    background: #cfeffc url('img/cross_bg.png') repeat-x bottom;
+    height: 100vh;
 }
 
-.main-goal section,
-.main-goal form {
+#main-goal section,
+#main-goal form {
     width: 100%;
 }
 
 #progress-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
 
 }
 .progress-wrapper{
@@ -60,9 +66,27 @@
     align-content: center;
 }
 .progress-end{
-    width: 20px;
+    width: 60px;
     height: 30px;
-    background-color: green;
-    display: inline-block;
+    display: none;
     float: left;
+}
+
+@media all and (max-width: 1024px) {
+    .label {
+        width: 15vw;
+        height: 15vw;
+    }
+    .label img {
+        height: 15vw;
+    }
+}
+
+.progress-end img{
+    width: inherit;
+    height: inherit;
+}
+#progress-section img{
+    width: 50vh;
+    margin-bottom: 5vh;
 }

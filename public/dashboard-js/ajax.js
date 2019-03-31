@@ -5,6 +5,7 @@ function get() {
         "contentType": "application/json",
         "success": function (res) {
             let table = $("#expenses tbody").html("");
+            piechart(res)
             res.forEach(function (item) {
                 let dateUse = new Date(Number(item["date"]));
                 table.append(`\
@@ -13,7 +14,7 @@ function get() {
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
-                        <td>X</td>\
+                        <td><a class='link'>X</a></td>\
                     </tr>\
                     `)
             });
@@ -51,4 +52,3 @@ function post() {
         }
     });
 }
-
