@@ -52,9 +52,9 @@
                     res.forEach((item) => {
                         currentMoney += item["spent"];
                     });
+                    get()
                 }
             });
-        setTimeout(get(),3000);
     }
         //post metoda
         function post() {
@@ -72,7 +72,7 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
-                        setTimeout(get(),2000);
+                        get();
                     } else {
                         //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
                     }
@@ -91,6 +91,7 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
+                        console.log(res);
                         if (cb){
                             cb(res);
                         }
