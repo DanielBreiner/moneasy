@@ -4,7 +4,9 @@
     <p class="logo-crs">
         <img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs">
     </p>
-    <section id="advice" class="hidden"></section>
+    <section id="advice" class="hidden">
+        <a id="seen-advice">Okay</a>
+    </section>
     <section id="noadvice">
         <div class="land-of-spend">
             <a href="dashboard" class="cloud-crs">
@@ -30,10 +32,14 @@
                 $("#noadvice").removeClass("hidden");
             }
             else {
-                $("#advice").html(data)
+                $("#advice").prepend(data);
                 $("#advice").removeClass("hidden");
                 $("#noadvice").addClass("hidden");
             }
+        });
+        $("#seen-advice").on("click", function(){
+            $("#advice").addClass("hidden");
+            $("#noadvice").removeClass("hidden");
         });
     });
     </script>

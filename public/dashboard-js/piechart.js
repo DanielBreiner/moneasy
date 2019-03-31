@@ -17,8 +17,8 @@ function piechart(a) {
                 label: 'money',
                 data: dataArr,
                 backgroundColor: [
-                    '#f45d5d',
                     '#23bf76',
+                    '#f45d5d',
                 ],
                 borderColor: [
                     '#fff',

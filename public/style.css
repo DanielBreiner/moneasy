@@ -12,6 +12,10 @@ body {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
 /* INDEX */
 .main-index {
     display: flex;
@@ -169,11 +173,11 @@ body {
 }
 
 #expenses tr {
-    border-bottom: 1px solid #fff;
+    border-top: 2px solid #fff;
 }
 
 #expenses tr:last-child {
-    border: none;
+    border-bottom: 2px solid #fff;
 }
 
 .spend {
@@ -182,7 +186,9 @@ body {
 
 .chart {
     width: 100%;
-    background: url("img/cross_bg.png") bottom repeat-x #cfeffc;
+    background: url("img/lady_side.png") bottom right no-repeat,
+    url("img/cross_bg.png") bottom repeat-x #cfeffc;
+    background-size: 10%, contain;
     display: flex;
     justify-content: center;
 }
@@ -370,6 +376,10 @@ input.apple-switch:checked:after {
     .chart-wrapper {
         width: 525px;
         height: 600px;
+    }
+
+    .chart {
+        background-size: 30%, contain;
     }
       
 }
