@@ -102,10 +102,12 @@
                                 ${item['note']}
                             </div>\
                             `)
-                            if(matString < 2){
-                            $(`#${item['id']}`).css('width', '5%');
+                            if(math < 2){
+                                $(`#${item['id']}`).css('width', '5%');
+                            }else if(math > 98){
+                                $(`#${item['id']}`).css('width', '98%');
                             }else{
-                            $(`#${item['id']}`).css('width', matString);
+                                $(`#${item['id']}`).css('width', matString);
                             }
                         })
                     } else {
