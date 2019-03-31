@@ -6,12 +6,14 @@ function get() {
         "success": function (res) {
             let table = $("#expenses tbody").html("");
             res.forEach(function (item) {
+                let dateUse = new Date(Number(item["date"]));
                 table.append(`\
-                    <tr>\
-                        <td>${new Date(Number(item["date"])).toDateString()}</td>\
-                        <td>${item["spent"]}</td>\
+                    <tr${(item["spent"] < 0) ? ' class="spend"' : ""}>\
+                        <td>${dateUse.getDate() + "." + dateUse.getMonth() + "." + dateUse.getFullYear()}</td>\
+                        <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
+                        <td>X</td>\
                     </tr>\
                     `)
             });
