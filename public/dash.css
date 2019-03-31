@@ -4,10 +4,6 @@
     appearance: none;
 }
 
-.img {
-    background-image: url(http://picsum.photos/25);
-}
-
 .label {
     cursor: pointer;
     background-size: contain;
