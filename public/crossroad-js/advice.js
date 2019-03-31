@@ -1,25 +1,19 @@
-function getUserCurAdvice(cb) {
+function getAdvice(cb) {
     $.ajax({
         "url": "/advice",
         "contentType": "application/json",
         "success": function (res) {
-            if ("curadvice" in res[0]){
-                cb(res[0]["curadvice"])
-            }
+            cb(res[0]["quote"]);
         }
     });
 }
 
-function getAdvice(num, cb) {
+function readAdvice(){
     $.ajax({
         "url": "/advice",
         "method": "GET",
         "contentType": "application/json",
-        "data": {"advice": num},
-        "success": function (res) {
-            if ("quote" in res[0]){
-                cb(res[0].quote)
-            }
-        }
+        "data": {"read": 1}
     });
+
 }

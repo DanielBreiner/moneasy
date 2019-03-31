@@ -18,10 +18,15 @@
     display: inline-block;
     width: 25px;
     height: 25px;
+    filter: grayscale(100);
+}
+
+.label img {
+    height: 24px;
 }
 
 .radio-box input:checked+.label {
-    border: 1px solid red;
+    filter: none;
 }
 
 .progress-bar {

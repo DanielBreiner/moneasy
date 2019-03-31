@@ -24,18 +24,17 @@
     <script src="crossroad-js/advice.js"></script>
     <script>
     $(function() {
-        getUserCurAdvice(function(num){
-            getAdvice(num, function(data){
-                if (!data){ //NOTE(DanoB) If data is false, keep advice hidden
-                    $("#advice").addClass("hidden");
-                    $("#noadvice").removeClass("hidden");
-                }
-                else {
-                    $("#advice").html(data)
-                    $("#advice").removeClass("hidden");
-                    $("#noadvice").addClass("hidden");
-                }
-            });
+        getAdvice(function(data){
+            if (!data){ //NOTE(DanoB) If data is false, keep advice hidden
+                $("#advice").addClass("hidden");
+                $("#noadvice").removeClass("hidden");
+            }
+            else {
+                $("#advice").html(data)
+                $("#advice").removeClass("hidden");
+                $("#noadvice").addClass("hidden");
+                readAdvice();
+            }
         });
     });
     </script>
