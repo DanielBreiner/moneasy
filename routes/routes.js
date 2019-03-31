@@ -33,6 +33,12 @@ router.post("/sql", (req, res) => {
     }
 });
 
+router.delete('/sql', (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    
+});
+
 router.get('/sql', (req, res) => {
     sql.requestRaw("SELECT * FROM public.spending ORDER BY date DESC;", function (data) {
         res.set('Content-Type', 'application/json');
