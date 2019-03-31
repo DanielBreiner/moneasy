@@ -1,21 +1,21 @@
 function select() { //NOTE(DanoB) Changes the options in form select
     let el = $("form #radio-data");
 
-    if ($("form input[type=checkbox]").is(':checked')) {
+    if (!$("form input[type=checkbox]").is(':checked')) {
         el.html(`\
             <div class='radio-box'>\
             <input checked="checked" id="food" type="radio" name="categories" value="food" />\
-            <label class='label img' for='food'></label>\
+            <label class='label img' for='food'><img src='img/pizza.svg'></label>\
             <input id="books" type="radio" name="categories" value="books" />\
-            <label class='label img' for='books'></label>\
+            <label class='label img' for='books'><img src='img/books.svg'></label>\
             <input id="sweets" type="radio" name="categories" value="sweets" />\
-            <label class='label img' for='sweets'></label>\
+            <label class='label img' for='sweets'><img src='img/candy.svg'></label>\
             <input id="toys and games" type="radio" name="categories" value="toys and games" />\
-            <label class='label img' for='toys and games'></label>\
+            <label class='label img' for='toys and games'><img src='img/video-game.svg'></label>\
             <input id="gifts" type="radio" name="categories" value="gifts" />\
-            <label class='label img' for='gifts'></label>\
+            <label class='label img' for='gifts'><img src='img/gift.svg'></label>\
             <input id="fun" type="radio" name="categories" value="fun" />\
-            <label class='label img' for='fun'></label>\
+            <label class='label img' for='fun'><img src='img/party.svg'></label>\
             </div>\
             `);
 
@@ -23,11 +23,11 @@ function select() { //NOTE(DanoB) Changes the options in form select
         el.html(`\
             <div class='radio-box'>\
             <input checked="checked" id="pocketMoney" type="radio" name="categories" value="pocketMoney" />\
-            <label class='label img' for='pocketMoney'></label>\
+            <label class='label img' for='pocketMoney'><img src='img/money-wings.svg'></label>\
             <input id="gift" type="radio" name="categories" value="gift" />\
-            <label class='label img' for='gift'></label>\
+            <label class='label img' for='gift'><img src='img/gift.svg'></label>\
             <input id="chores" type="radio" name="categories" value="chores" />\
-            <label class='label img' for='chores'></label>\
+            <label class='label img' for='chores'><img src='img/chores.svg'></label>\
             </div>\
             `);
     }

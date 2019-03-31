@@ -161,7 +161,19 @@ body {
 }
 
 .spend {
-    background: #f45252;
+    background: #f45d5d;
+}
+
+.chart {
+    width: 100%;
+    background: url("img/cross_bg.png") repeat-x;
+    display: flex;
+    justify-content: center;
+}
+
+.spend-form {
+    background: #cfeffc;
+    width: 100%;
 }
 
 /* QUERIES */

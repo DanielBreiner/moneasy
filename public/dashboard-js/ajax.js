@@ -13,7 +13,7 @@ function get() {
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\
-                        <td>X</td>\
+                        <td><a class='link'>X</a></td>\
                     </tr>\
                     `)
             });

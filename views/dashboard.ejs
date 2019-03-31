@@ -3,21 +3,29 @@
 <body class="dashboard">
     <section class="spend-form">
         <form method="GET" action="/sql">
-            <label for="credit">Income</label>
-            <input type="checkbox" name="credit">
+            <div class="credit-checkbox">
+                <label for="credit">Income</label>
+                <input type="checkbox" name="credit">
+            </div>
+            <div class="spend-input">
+                <input type="number" placeholder="amount" name="amount" step="0.01">
+            </div>
             <div id='radio-data'>
                 <!-- tu pojdu data  radiobox-->
             </div>
-            <input type="number" placeholder="amount" name="amount" step="0.01">
-            <input type="text" placeholder="note" name="note">
+            <div class="spend-input">
+                <input type="text" placeholder="note" name="note">
+            </div>
         </form>
         <button id="submit">Submit</button>
     </section>
 
-    <section class="chart" style='width: 350px; height: 400px; display: block;'>
-        <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
-        <canvas id='pieChart'>
-        </canvas>
+    <section class="chart">
+        <div style='width: 350px; height: 400px; display: block;'>
+            <!-- v tomto div-e je pie chart, velkost pieChartu nastavovat cez tento div -->
+            <canvas id='pieChart'>
+            </canvas>
+        </div>
     </section>
 
     <section class="expenses-table">
