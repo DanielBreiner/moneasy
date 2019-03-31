@@ -139,14 +139,14 @@
                     "method": "GET",
                     "contentType": "application/json",
                     "success": function(data){
-                        console.log(data);
+                        $("#advice-content").html(data["data"]);
                     }
                 });
             }
         
-        $(document).ready({
-            a()
-            advice()
+        $(document).ready(function (){
+            a();
+            advice();
         }    
     );
     </script>
