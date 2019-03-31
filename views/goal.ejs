@@ -22,10 +22,10 @@
         <section id='form-section'>
             <form method="POST" action='/sql' class="spend-input goal-form">
                 <div class="goal-input"> 
-                    <input type='text' name='name' placeholder="Name of goal"/>
+                    <input type='text' name='name' placeholder="What I want?"/>
                 </div>
                 <div class="goal-input">
-                    <input type='number' name='end' placeholder="Goal amount"/>
+                    <input type='number' name='end' placeholder="How much do I need?"/>
                 </div>
             </form>
             <img src="img/submit.svg" id="submit"></img>
@@ -93,7 +93,7 @@
                             <img src='img/wheelbarrow.png'>\
                             </div>\
                             </div> \
-                            <div>\
+                            <div class='goal-name'>\
                                 ${item['note']}
                             </div>\
                             `)

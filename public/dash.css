@@ -29,7 +29,7 @@
 .progress-bar {
     width: 40%;
     display: block;
-    margin-bottom: 3vh;
+    margin-bottom: 1.5vh;
     border-bottom: 5px solid #fff;
     background: url("img/goal_coins_start.png") bottom left no-repeat,
     url("img/goal_coins.png") bottom right no-repeat;
