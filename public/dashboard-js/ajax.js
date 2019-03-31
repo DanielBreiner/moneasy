@@ -38,7 +38,7 @@ function post() {
     } else {
         data["credit"] = false;
     }
-    if (data["amount"] && data["note"]){
+    if (data["amount"]){
         $.ajax({
             "url": "/sql",
             "method": "POST",
