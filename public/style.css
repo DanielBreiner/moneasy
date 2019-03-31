@@ -2,6 +2,11 @@
     box-sizing: border-box;
   }
 
+@keyframes pulse {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
 body {
     font-family: Kalam, Arial, cursive, sans-serif;
     text-align: center;
@@ -108,6 +113,7 @@ body {
     margin: 0;
     display: inline-block;
     color: #222;
+    animation: pulse-cloud 1s infinite alternate;
 }
 
 .cloud-text-crs {
@@ -115,6 +121,16 @@ body {
     margin: 5vh 6vh 5vh 5vh;
     padding: 5.5vh;
     display: inline-block;
+    
+}
+
+@keyframes pulse-cloud {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-14px); }
+}
+
+.go-to-goal .cloud-crs {
+    animation-delay: .7s;
 }
 
 .land-of-spend .cloud-crs {
@@ -176,10 +192,31 @@ body {
     width: 100%;
 }
 
+.spend-input {
+    margin: 3vh;
+}
+
 .spend-input input {
-    width: 200px;
+    width: 190px;
     font-size: 40px;
     text-align: center;
+    border:none;
+}
+
+.note input {
+    width: 280px;
+    font-size: 26px;
+}
+
+#submit {
+    width: 50px;
+    height: auto;
+    background: #fff;
+    border-radius: 50%;
+}
+
+#submit:hover {
+    cursor: pointer;
 }
 
 /* QUERIES */
@@ -220,11 +257,6 @@ body {
         animation: pulse .5s infinite alternate;
     }
 
-    @keyframes pulse {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-20px); }
-    }
-
     .arrow-down:hover {
         cursor: pointer;
     }
@@ -241,6 +273,23 @@ body {
     #expenses {
         width: 100vw;
         font-size: 38px;
+    }
+
+    .spend-input input {
+        width: 50vw;
+        font-size: 8vw;
+        line-height: 8vw;
+    }
+
+    .note input {
+        width: 70vw;
+        font-size: 5vw;
+        line-height: 5vw;
+    }
+
+    #submit {
+        width: 17vw;
+        height: auto;
     }
       
 }

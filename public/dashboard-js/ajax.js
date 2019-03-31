@@ -9,7 +9,7 @@ function get() {
                 let dateUse = new Date(Number(item["date"]));
                 table.append(`\
                     <tr${(item["spent"] < 0) ? ' class="spend"' : ""}>\
-                        <td>${dateUse.getDate() + "." + dateUse.getMonth() + "." + dateUse.getFullYear()}</td>\
+                        <td>${dateUse.getDate() + "." + (dateUse.getMonth()+1) + "." + dateUse.getFullYear()}</td>\
                         <td>${item["spent"] + " €"}</td>\
                         <td>${item["category"]}</td>\
                         <td>${item["note"]}</td>\

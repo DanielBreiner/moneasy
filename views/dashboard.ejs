@@ -8,16 +8,16 @@
                 <input type="checkbox" name="credit">
             </div>
             <div class="spend-input">
-                <input type="number" placeholder="amount" name="amount" step="0.01">
+                <input type="number" placeholder="amount" name="amount">
             </div>
             <div id='radio-data'>
                 <!-- tu pojdu data  radiobox-->
             </div>
-            <div class="spend-input">
+            <div class="spend-input note">
                 <input type="text" placeholder="note" name="note">
             </div>
         </form>
-        <button id="submit">Submit</button>
+        <img src="img/submit.svg" id="submit"></img>
     </section>
 
     <section class="chart">
@@ -55,7 +55,15 @@
 
             $("form input[type=checkbox]").change(function () {
                 select();
+
+                if ($("form input[type=checkbox]").is(":checked")) {
+                    $("#submit").attr("src","img/minus.svg");
+                }
+                else {
+                    $("#submit").attr("src","img/submit.svg");
+                }
             });
+
 
             get();
             select();
