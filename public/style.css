@@ -2,9 +2,14 @@
     box-sizing: border-box;
   }
 
-@keyframes pulse {
+@keyframes bounce {
     0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+    100% { transform: translateY(-2.4vh); }
+}
+
+@keyframes bounce-cloud {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-1.6vh); }
 }
 
 body {
@@ -31,6 +36,9 @@ body {
 .left-half {
     background: url("img/main_page_left_girl.png") bottom no-repeat #cfeffc;
     background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .logo {
@@ -42,21 +50,12 @@ body {
     height: auto;
 }
 
-.left-half {
-    display: flex;
-    flex-direction: column;
-}
-
-.cloud {
-    background: url("img/cloud.png") no-repeat center;
-    background-size: contain;
+.cloud-index {
+    background: url("img/cloud_1.png") no-repeat center;
+    background-size: 100% 100%;
     margin-top: 4vh;
-}
-
-.cloud-text {
-    width: 45%;
-    margin: 10% 15% 10% 10%;
-    padding: 4%;
+    width: 65%;
+    padding: 7vh;
     font-size: 2vw;
     display: inline-block;
 }
@@ -103,7 +102,7 @@ body {
 }
 
 .logo-crs {
-    margin-top: 0;
+    margin: 0 0 4vh;
 }
 
 .logo-img-crs {
@@ -112,36 +111,37 @@ body {
 }
 
 .cloud-crs {
-    background: url("img/cloud.png") no-repeat center;
-    background-size: contain;
+    width: 50%;
+    padding: 6vh;
+    background: url("img/cloud_1.png") no-repeat center;
+    background-size: 100% 100%;
     margin: 0;
     display: inline-block;
     color: #222;
-    animation: pulse-cloud 1s infinite alternate;
+    text-decoration: none;
 }
 
-.cloud-text-crs {
-    font-size: 4.3vh;
-    margin: 5vh 6vh 5vh 5vh;
-    padding: 5.5vh;
-    display: inline-block;
-    
-}
-
-@keyframes pulse-cloud {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-14px); }
-}
-
-.go-to-goal .cloud-crs {
-    animation-delay: .7s;
+.crs-menu {
+    width: 30%;
 }
 
 .land-of-spend .cloud-crs {
     margin-left: 10vw;
 }
 
+.land-of-spend {
+    margin-bottom: 5vh;
+}
+
+.go-to-goal .cloud-crs,
+.land-of-spend .cloud-crs {
+    padding: 7vh;
+    font-size: 4.7vh;
+    animation: bounce-cloud 1s infinite alternate;
+}
+
 .go-to-goal .cloud-crs {
+    animation-delay: .7s;
     margin-right: 10vw;
 }
 
@@ -160,16 +160,12 @@ body {
     opacity: 0;
 }
 
-.cloud-advice {
-    width: 50%;
-    font-size: 4.3vh;
-    margin: 6vh 12vh 6vh 6vh;
-    padding: 8.6vh;
+#advice {
+    font-size: 3.7vh;
 }
 
 #advice-content {
-    margin-top: 0;
-    margin-bottom: 1.5vh;
+    margin-top: 0 0 1.5vh;
 }
 
 /* DASHBOARD */
@@ -333,17 +329,12 @@ input.apple-switch:checked:after {
 }
 
 #form-section {
-    margin-top: 3vh;
+    margin: 3vh 0 4vh;
 }
 
-.goal-advice {
-    background: url("img/cloud.png") no-repeat center;
-    background-size: contain;
-}
-
-.goal-advice {
-    font-size: 2.5vw;
-    padding: 6vw 36vw 6vw 31vw;
+#main-goal .cloud-crs {
+    width: 30%;
+    margin-bottom: 2vh;
 }
 
 .goal-lady {
@@ -382,25 +373,26 @@ input.apple-switch:checked:after {
         font-size: 6.9vw;
     }
 
-
     .arrow-down {
         display: inline-block;
         width: 10vw;
         height: auto;
-        animation: pulse .5s infinite alternate;
+        animation: bounce .5s infinite alternate;
     }
 
     .arrow-down:hover {
         cursor: pointer;
     }
 
-    .cloud {
+    .cloud-index {
         margin: 0 0 15vh; /*9vw*/
+        font-size: 3.5vh;
+        padding: 5vh;
     }
 
-    .cloud-text {
-        margin: 7% 11% 7% 7%;
-        font-size: 4.8vw;
+    .cloud-crs {
+        width: 85%;
+        padding: 6vh 4vh;
     }
 
     #expenses {
@@ -457,14 +449,6 @@ input.apple-switch:checked:after {
         background-size: 30%, contain;
     }
 
-    .cloud-advice {
-        width: 85%;
-        font-size: 3.4vh;
-        margin: 4vh 6vh 4vh 4vh;
-        padding: 5.9vh;
-        padding-right: 7vh;
-    }
-
     .goal-input input {
         font-size: 44px;
         width: 70%;
@@ -476,17 +460,15 @@ input.apple-switch:checked:after {
     }
 
     #form-section {
-        margin-top: 1vh;
-    }
-
-    .goal-advice {
-        font-size: 2.5vh;
-        padding: 6vh 10vh 6vh 7vh;
-        margin: 3vh -10vh 3vh 2vh;
+        margin: 1vh 0 4vh;
     }
       
     .credit-checkbox {
         font-size: 50px;
+    }
+
+    #main-goal .cloud-crs {
+        width: 100%;
     }
     
 }
