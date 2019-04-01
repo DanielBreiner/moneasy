@@ -19,6 +19,11 @@ tooltipy na logo "spat na index" abo daco take
 tweak/rework text v oblacikochk
 pri updatovani table na dashboard by malo najprv vytvorit uplne novy a potom vymzat stary aby user nestratil scroll
 
+## design
+all clouds
+background: url(img/cloud_1.png) center no-repeat;
+background-size: 100% 100%;
+
 ## new features
 prepinanie mesiacov na dashboard
 ?vyhladavanie na dashboard
