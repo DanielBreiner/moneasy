@@ -23,6 +23,8 @@ pri updatovani table na dashboard by malo najprv vytvorit uplne novy a potom vym
 all clouds
 background: url(img/cloud_1.png) center no-repeat;
 background-size: 100% 100%;
+favicon
+kyvanie rukou
 
 ## new features
 prepinanie mesiacov na dashboard
