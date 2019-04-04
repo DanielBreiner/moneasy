@@ -60,9 +60,7 @@ passport.use(
             clientSecret: keys.google.clientSecret,
         },
         (accessToken, refreshToken, profile, cb) => {
-            userFindOrCreate(profile, function (err, user) {
-                return cb(err, user);
-            });
+            userFindOrCreate(profile, cb);
         }
     )
 );
@@ -75,9 +73,7 @@ passport.use(
             clientSecret: keys.facebook.clientSecret
         },
         (accessToken, refreshToken, profile, cb) => {
-            userFindOrCreate(profile, function (err, user) {
-                return cb(err, user);
-            });
+            userFindOrCreate(profile, cb);
         }
     )
 );
