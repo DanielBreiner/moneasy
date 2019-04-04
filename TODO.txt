@@ -1,7 +1,9 @@
 login
+zamysliet sa ci niektore udaje co sa tahaju z databazy by sa nemali prvy krat (pri otvoreni stranky) spracovat cisto cez backend (nie ajax) (napr. crossroad, dashboard) aby uzivatel nenacital stranku a az potom ON cakal na databazu (na holej stranke)
 feedback nacitavania pri removovani expense na dashboard
 feedback nacitavania pri pridavani expense na dashboard
 tooltip pre ikony na dashboard
+improve expense/income checkbox/button aby fungoval onclick nie onrelease? dajak to premysliet aby clovek ked pusti mimo checkboxu tiez to islo
 hover na add expense na dashboarde
 hover na ikony na dashboarde
 hover na remove na dashboarde
