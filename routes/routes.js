@@ -146,22 +146,29 @@ router.get('/advice', (req, res) => {
 });
 
 router.get('*', (req, res) => {
-    switch (req.originalUrl) {
-        case "/":
-            res.render('index');
-            break;
-        case "/dashboard":
-            res.render('dashboard');
-            break;
-        case "/crossroad":
-            res.render('crossroad');
-            break;
-        case "/goal":
-            res.render('goal');
-            break;
-        default:
-            res.sendStatus(404);
-            break;
+    console.log(req.user);
+    
+    if (req.originalUrl == "/") res.render('index');
+    else if (req.user){
+        switch (req.originalUrl) {
+            case "/dashboard":
+                res.render('dashboard');
+                break;
+            case "/crossroad":
+                res.render('crossroad');
+                break;
+            case "/goal":
+                res.render('goal');
+                break;
+            default:
+                res.sendStatus(404);
+                break;
+        }
+    }
+    else {
+        console.log("here");
+        
+        res.redirect("/");
     }
 });
 
