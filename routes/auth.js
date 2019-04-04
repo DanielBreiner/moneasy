@@ -6,7 +6,7 @@ router.get('/google', passport.authenticate("google", {
 }));
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-    res.redirect("/");
+    res.redirect("/crossroad");
 })
 
 router.get('/facebook', passport.authenticate('facebook', {
@@ -14,7 +14,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 router.get('/facebook/redirect', passport.authenticate('facebook', { failureRedirect: '/' }), (req, res) => {
-    res.redirect('/');
+    res.redirect('/crossroad');
 });
 
 router.get("/logout", (req, res) => {
