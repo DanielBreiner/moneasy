@@ -8,6 +8,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+
 .label {
     cursor: pointer;
     background-size: contain;
@@ -48,13 +49,15 @@
 #main-goal {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 5vh 5vh 0;
     background: url('img/cross_bg.png') repeat-x bottom #cfeffc;
     min-height: 100vh;
 }
 
-#main-goal section,
-#main-goal form {
+#progress-section,
+#form-section,
+.goal-lady {
     width: 100%;
 }
 
