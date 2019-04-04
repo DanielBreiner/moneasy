@@ -55,7 +55,7 @@ userFindOrCreate = (data, cb) => {
 passport.use(
     new strategyGoogle(
         {
-            callbackURL: `http://localhost:${keys.server.port}/auth/google/redirect`,
+            callbackURL: `http://moneasy.net/auth/google/redirect`,
             clientID: keys.google.clientID,
             clientSecret: keys.google.clientSecret,
         },
@@ -70,7 +70,7 @@ passport.use(
 passport.use(
     new strategyFacebook(
         {
-            callbackURL: `http://localhost:${keys.server.port}/auth/facebook/redirect`,
+            callbackURL: `http://moneasy.net/auth/facebook/redirect`,
             clientID: keys.facebook.clientID,
             clientSecret: keys.facebook.clientSecret
         },
