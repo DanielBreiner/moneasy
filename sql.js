@@ -9,6 +9,7 @@ function connect() {
 }
 
 module.exports = {
+    "connect": connect,
     "insert": require("./sql/insert.js")(connect),
     "request": require("./sql/request.js")(connect),
     "requestAll": require("./sql/requestAll.js")(connect),

@@ -1,6 +1,10 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyparser = require("body-parser");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+const keys = require("./config/keys");
+require("./passport"); //NOTE(DanoB) Initializing passport
 const app = express();
 
 let path = require('path');
@@ -10,6 +14,15 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
     extended: true
 }));
+
+//Login stuff
+app.use(cookieSession({
+    maxAge: 24*60*60*1000,
+    keys: [keys.session.cookieKey]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/auth', require("./routes/auth"));
 
 //EJS
 app.use(expressLayouts);
@@ -29,5 +42,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || keys.server.port;
 app.listen(PORT, console.log(`Server started. http://localhost:${PORT}`));
