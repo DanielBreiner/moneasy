@@ -89,7 +89,6 @@
                 "data": data,
                 "success": function (res) {
                     if (res) {
-                        console.log(res);
                         if (cb){
                             cb(res);
                         }
@@ -99,7 +98,6 @@
                             var end = item['end']
                             var math = Math.round(currentMoney / end * 100);
                             var matString = math + '%';
-                            console.log(currentMoney)
                             inside.append(`
                             <div class='progress-bar'>\
                             <div id='${item['id']}' class='progress'>\

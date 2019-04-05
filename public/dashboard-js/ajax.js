@@ -44,9 +44,7 @@ function post() {
             "method": "POST",
             "content-type": "application/json",
             "data": data,
-            "success": function (res) {
-                console.log(res);
-                
+            "success": function (res) {                
                 if (res) {
                     $("form").trigger("reset");
                     get();

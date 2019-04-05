@@ -7,7 +7,6 @@ function piechart(a) {
             dataArr[1] += item["spent"];
         }
     })
-    console.log(dataArr);
     var ctx = document.getElementById('pieChart');
     new Chart(ctx, {
         type: 'pie',
