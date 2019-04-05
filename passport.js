@@ -81,8 +81,8 @@ passport.use(
     new strategyGoogle(
         {
             callbackURL: `http://moneasy.net/auth/google/redirect`,
-            clientID: keys.google.clientID,
-            clientSecret: keys.google.clientSecret,
+            clientID: process.env.googleClientID || keys.google.clientID,
+            clientSecret: process.env.googleClientSecret || keys.google.clientSecret,
             passReqToCallback: true
         },
         (req, accessToken, refreshToken, profile, cb) => {
@@ -99,8 +99,8 @@ passport.use(
     new strategyFacebook(
         {
             callbackURL: `http://moneasy.net/auth/facebook/redirect`,
-            clientID: keys.facebook.clientID,
-            clientSecret: keys.facebook.clientSecret,
+            clientID: process.env.googleClientSecret || keys.facebook.clientID,
+            clientSecret: process.env.googleClientSecret || keys.facebook.clientSecret,
             passReqToCallback: true
         },
         (req, accessToken, refreshToken, profile, cb) => {

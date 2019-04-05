@@ -4,7 +4,7 @@ const bodyparser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
-const keys = require("./config/config");
+const config = require("./config/config");
 require("./passport"); //NOTE(DanoB) Initializing passport
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(bodyparser.urlencoded({
 //Login stuff
 app.use(cookieSession({
     maxAge: 24*60*60*1000, //NOTE(DanoB) 1 day cookie maxAge
-    keys: [keys.session.cookieKey] //NOTE(DanoB) Cookie hash key
+    keys: [process.env.sessionCookieKey || keys.session.cookieKey] //NOTE(DanoB) Cookie hash key
 }));
 app.use(passport.initialize());
 app.use(passport.session());
