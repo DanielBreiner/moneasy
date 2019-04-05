@@ -4,7 +4,9 @@ const bodyparser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
+const keys = require("./config/config");
 require("./passport"); //NOTE(DanoB) Initializing passport
+
 const app = express();
 
 let path = require('path');
@@ -17,8 +19,8 @@ app.use(bodyparser.urlencoded({
 
 //Login stuff
 app.use(cookieSession({
-    maxAge: 24*60*60*1000,
-    keys: [keys.session.cookieKey]
+    maxAge: 24*60*60*1000, //NOTE(DanoB) 1 day cookie maxAge
+    keys: [keys.session.cookieKey] //NOTE(DanoB) Cookie hash key
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,5 +44,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //port
-const PORT = process.env.PORT || keys.server.port;
+const PORT = process.env.PORT || config.server.port;
 app.listen(PORT, console.log(`Server started. http://localhost:${PORT}`));
