@@ -1,7 +1,9 @@
 const passport = require("passport");
 const strategyGoogle = require("passport-google-oauth20").Strategy;
 const strategyFacebook = require("passport-facebook").Strategy;
-const keys = require("./config/keys");
+if(!process.env.moneasy){
+    var keys = require("./config/keys");
+}
 const sql = require("./sql");
 const randString = require("./utils/randString");
 

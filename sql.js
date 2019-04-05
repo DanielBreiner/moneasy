@@ -1,5 +1,7 @@
 const { Pool } = require('pg');
-const keys = require("./config/keys")
+if(!process.env.moneasy){
+    var keys = require("./config/keys");
+}
 function connect() {
     return new Pool({
         connectionString: process.env.DATABASE_URL || keys.postgres.connectionString,

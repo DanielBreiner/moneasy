@@ -3,7 +3,10 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyparser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-const keys = require("./config/keys");
+if(!process.env.moneasy){
+    var keys = require("./config/keys");
+}
+
 const config = require("./config/config");
 require("./passport"); //NOTE(DanoB) Initializing passport
 
