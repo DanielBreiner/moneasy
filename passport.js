@@ -10,12 +10,9 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser((id, cb) => {
-    console.log("deserialize");
-
     client = sql.connect();
     client.query(`SELECT * FROM users WHERE id='${id}'`, (err, res) => {
         if (err) throw err;
-        console.log(res.rows[0]);
         cb(null, res.rows[0]);
         client.end();
     });
@@ -23,7 +20,6 @@ passport.deserializeUser((id, cb) => {
 
 userFindOrCreate = (profile, cb) => {
     client = sql.connect();
-    console.log(profile);
 
     client.query(`SELECT * FROM users WHERE ${profile.provider}id='${profile.id}'`, (err, res) => {
         if (err) throw err;
@@ -33,7 +29,7 @@ userFindOrCreate = (profile, cb) => {
         }
         else {
             let id = randString(20);
-            client.query(`INSERT INTO users (id,username,${profile.provider}id) VALUES ( '${id}', '${profile.displayName}', ${profile.id} );`, (err, res) => {
+            client.query(`INSERT INTO users (id,username,${profile.provider}id) VALUES ( '${id}', '${profile.displayName}', ${profile.id}, '${profile.provider}' );`, (err, res) => {
                 if (err) { //NOTE(DanoB) New user
                     if (err.code == 23505) {
                         //TODO(DanoB) Osetrit ked DEFAULT je taken
@@ -44,10 +40,39 @@ userFindOrCreate = (profile, cb) => {
                 cb(null, { 
                         id: id,
                         username: profile.displayName,
-                        [profile.provider + "id"]: profile.id
+                        [profile.provider + "id"]: profile.id,
+                        provider: profile.provider
                     }
                 );
             });
+        }
+    });
+}
+
+userAddAuthProvider = (profile, newprofile, cb) => {
+    client = sql.connect();
+    client.query(`SELECT * FROM users WHERE id='${profile.id}'`, (err, res) => {
+        if (err) throw err;
+        curProviders = res.rows[0].provider.split(',');        
+        if (curProviders.includes(newprofile.provider) || res.rows[0][newprofile.provider+"id"]) { //TODO(DanoB) TEST THIS
+            client.end();
+            cb("Already logged in with this auth provider", {});
+        }
+        else if (res.rowCount > 0) { //NOTE(DanoB) Old user
+            if (JSON.stringify(res.rows[0]) === JSON.stringify(profile)) {
+                client.query(`UPDATE users SET ${newprofile.provider}id='${newprofile.id}', provider=provider||','||'${newprofile.provider}' WHERE id='${profile.id}'`, (err, res2) => {
+                    profile.provider += "," + newprofile.provider;
+                    profile[newprofile.provider + "id"] = newprofile.id
+                    client.end();
+                    cb(null, profile)
+                });
+            } else {
+                client.end();
+                cb("Wrong user profile data" + profile, {}); //NOTE(DanoB) Bad data
+            }
+        } else {
+            client.end();
+            cb("Wrong user profile data" + profile, {}); //NOTE(DanoB) Bad data
         }
     });
 }
@@ -58,9 +83,14 @@ passport.use(
             callbackURL: `http://moneasy.net/auth/google/redirect`,
             clientID: keys.google.clientID,
             clientSecret: keys.google.clientSecret,
+            passReqToCallback: true
         },
-        (accessToken, refreshToken, profile, cb) => {
-            userFindOrCreate(profile, cb);
+        (req, accessToken, refreshToken, profile, cb) => {
+            if (req.user) {
+                userAddAuthProvider(req.user, profile, cb)
+            } else {
+                userFindOrCreate(profile, cb);
+            }
         }
     )
 );
@@ -70,10 +100,15 @@ passport.use(
         {
             callbackURL: `http://moneasy.net/auth/facebook/redirect`,
             clientID: keys.facebook.clientID,
-            clientSecret: keys.facebook.clientSecret
+            clientSecret: keys.facebook.clientSecret,
+            passReqToCallback: true
         },
-        (accessToken, refreshToken, profile, cb) => {
-            userFindOrCreate(profile, cb);
+        (req, accessToken, refreshToken, profile, cb) => {
+            if (req.user) {
+                userAddAuthProvider(req.user, profile, cb)
+            } else {
+                userFindOrCreate(profile, cb);
+            }
         }
     )
 );
