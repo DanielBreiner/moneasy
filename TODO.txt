@@ -1,7 +1,8 @@
 full sql rework
 frontend pre login
+"Got it" tlacidlo na crossroad sa da stlacit aj ked je neviditelne - fixme
 zmensit / inak vyriesit obrazky - prilis su velke a dlho sa stahuju
-zamysliet sa ci niektore udaje co sa tahaju z databazy by sa nemali prvy krat (pri otvoreni stranky) spracovat cisto cez backend (nie ajax) (napr. crossroad, dashboard) aby uzivatel nenacital stranku a az potom ON cakal na databazu (na holej stranke)
+empty states pre goals a spending
 feedback nacitavania pri removovani expense na dashboard
 feedback nacitavania pri pridavani expense na dashboard
 tooltip pre ikony na dashboard
