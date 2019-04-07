@@ -82,7 +82,7 @@ userAddAuthProvider = (profile, newprofile, cb) => {
 passport.use(
     new strategyGoogle(
         {
-            callbackURL: `http://moneasy.net/auth/google/redirect`,
+            callbackURL: process.env.googleCallbackUrl || keys.google.callbackUrl,
             clientID: process.env.googleClientID || keys.google.clientID,
             clientSecret: process.env.googleClientSecret || keys.google.clientSecret,
             passReqToCallback: true
@@ -100,7 +100,7 @@ passport.use(
 passport.use(
     new strategyFacebook(
         {
-            callbackURL: `http://moneasy.net/auth/facebook/redirect`,
+            callbackURL: process.env.facebookCallbackUrl || keys.facebook.callbackUrl,
             clientID: process.env.googleClientSecret || keys.facebook.clientID,
             clientSecret: process.env.googleClientSecret || keys.facebook.clientSecret,
             passReqToCallback: true
