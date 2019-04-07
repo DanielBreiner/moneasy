@@ -14,6 +14,7 @@ if(!process.env.moneasy){
  * @param {string} query SQL query
  * @param {function} cb Result callback; 1 parameter: result
  * @param {function} onErr Error callback; 1 parameter: error
+ * @returns {void} This is a void function
  */
 function query(query, cb, onErr) {
     let client = new Client({
@@ -22,7 +23,9 @@ function query(query, cb, onErr) {
     });
     client.connect()
     client.query(query)
-        .then((res) => { cb(res); })
+        .then((res) => { 
+            if(cb) cb(res);
+        })
         .catch((err) => { 
             if(onErr) onErr(err);
             else throw err;

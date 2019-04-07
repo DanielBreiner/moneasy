@@ -8,7 +8,7 @@ if(!process.env.moneasy){
     var keys = require("./config/keys");
 }
 const config = require("./config/config");
-require("./passport"); //NOTE(DanoB) Initializing passport  
+require("./passport"); //NOTE(DanoB) Initializing passport
 
 const app = express();
 
@@ -44,7 +44,6 @@ app.use('/rest', require('./routes/rest'));
 
 //routes
 app.use('/', require('./routes/router'));
-app.use("*", (req, res) => { res.sendStatus(404); }) //NOTE(DanoB) When no other route is found, send status 404 (not found)
 
 const PORT = process.env.PORT || config.server.port;
 app.listen(PORT, console.log(`Server started. http://localhost:${PORT}`));
