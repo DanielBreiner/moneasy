@@ -11,11 +11,13 @@ if(!process.env.moneasy){
 }
 const sql = require("./sql");
 const randString = require("./utils/randString");
+const userSetup = require("./usersetup");
 
 //#region Checking if a user is logged through a variable (very fast) //REVIEW
 var users;
 sql.query(`SELECT * FROM users`, (res) => { //REVIEW(DanoB) Cannot deserialize right after server starts up until query is done
     users = res.rows;
+    console.log("Users downloaded. Ready to deserialize.");    
 })
 passport.serializeUser((user, cb) => {
     users.push(user);
@@ -50,13 +52,14 @@ userFindOrCreate = (profile, cb) => {
         else {
             let id = randString(20);
             sql.query(`INSERT INTO users (id,username,${profile.provider}id, provider) VALUES ( '${id}', '${profile.displayName}', ${profile.id}, '${profile.provider}' );`, (res) => {
-                cb(null, { 
+                profile = { 
                     id: id,
                     username: profile.displayName,
                     [profile.provider + "id"]: profile.id,
                     provider: profile.provider
                 }
-            );
+                cb(null, profile);
+                userSetup.setup(profile);
             }, (err) => {
                 if (err.code == 23505) {
                     //TODO(DanoB) Osetrit ked DEFAULT je taken
