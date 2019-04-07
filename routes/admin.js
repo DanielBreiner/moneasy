@@ -6,6 +6,7 @@
 const router = require('express').Router();
 const middlewares = require("./middlewares");
 const sql = require("./../sql");
+const userSetup = require("./../usersetup");
 
 router.get("/", middlewares.adminAuthorize, (req, res) => {
     sql.query("SELECT * FROM users;", (res2) => {
@@ -19,10 +20,22 @@ router.get("/", middlewares.adminAuthorize, (req, res) => {
         <p>You are an administrator.</p>\
         <p>Your user profile: ${JSON.stringify(req.user)}</p>\
         <p>All user profiles:</p>\
-        ${JSON.stringify(res2.rows).replace("},{","}<br>{")}
+        ${JSON.stringify(res2.rows).replace("},{","}<br>{")}\
+        <form action="" method="POST">
+            <input name="removeUser" placeholder="remove user">
+            <button action="submit">Submit</button>
+        </form>
     </body>\
     </html>`)
     });
+});
+
+router.post("/", middlewares.adminAuthorize, (req, res) => {
+    if (req.body.removeUser) {
+        sql.query(`DELETE FROM users WHERE id='${req.body.removeUser}'`)
+        userSetup.remove(req.body.removeUser)
+        res.redirect("/admin");
+    }
 });
 
 module.exports = router;

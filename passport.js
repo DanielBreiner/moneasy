@@ -14,7 +14,7 @@ const randString = require("./utils/randString");
 const userSetup = require("./usersetup");
 
 //#region Checking if a user is logged through a variable (very fast) //REVIEW
-var users;
+var users; //REVIEW(DanoB) Real time changes in database are not reflected this way
 sql.query(`SELECT * FROM users`, (res) => { //REVIEW(DanoB) Cannot deserialize right after server starts up until query is done
     users = res.rows;
     console.log("Users downloaded. Ready to deserialize.");    
@@ -23,7 +23,7 @@ passport.serializeUser((user, cb) => {
     users.push(user);
     cb(null, user.id);
 });
-passport.deserializeUser((id, cb) => {    
+passport.deserializeUser((id, cb) => {
     for (let user of users) {
         if (user.id == id){
             cb(null, user);
@@ -59,7 +59,7 @@ userFindOrCreate = (profile, cb) => {
                     provider: profile.provider
                 }
                 cb(null, profile);
-                userSetup.setup(profile);
+                userSetup.setup(profile.id);
             }, (err) => {
                 if (err.code == 23505) {
                     //TODO(DanoB) Osetrit ked DEFAULT je taken

@@ -5,11 +5,18 @@
 
 const sql = require("./sql");
 
-module.exports = { 
-    setup: (profile) => {
-        sql.query(`INSERT INTO useradvicedata VALUES ('${profile.id}', 1);`);
+module.exports = {
+    /**
+     * @param {number} id Profile id of user
+     */
+    setup: (id) => {
+        sql.query(`INSERT INTO useradvicedata VALUES ('${id}', 1);`);
     },
-    remove: (profile) => {
-        sql.query(`DELETE FROM useradvicedata WHERE userid='${profile.id}';`);
+    /**
+     * @param {number} id Profile id of user
+     */
+    remove: (id) => {
+        sql.query(`DELETE FROM useradvicedata WHERE userid='${id}';`);
+        sql.query(`DELETE FROM groupusers WHERE userid='${id}';`);
     }
 }
