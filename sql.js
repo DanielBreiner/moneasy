@@ -9,7 +9,7 @@ function connect() {
     });
 }
 
-const { Client } = require('pg').Client;
+const Client = require('pg').Client;
 /**
  * Main way to access the SQL database
  * 
@@ -17,19 +17,23 @@ const { Client } = require('pg').Client;
  * @param {function} cb Result callback; 1 parameter: result
  * @param {function} onErr Error callback; 1 parameter: error
  */
-module.exports.query = function (query, cb, onErr) {
+function query(query, cb, onErr) {
     let client = new Client({
         connectionString: process.env.DATABASE_URL || keys.postgres.connectionString,
         ssl: true,
     });
     client.connect()
-    client.query(query) // your query string here
-        .then((res) => { cb(res); }) // your callback here
-        .catch((err) => { onErr(err); }) // your callback here
+    client.query(query)
+        .then((res) => { cb(res); })
+        .catch((err) => { 
+            if(onErr) onErr(err);
+            else throw err;
+        })
         .then(() => { client.end(); })
 }
 
 module.exports = {
+    query: query,
     /**
      * @deprecated
      */
