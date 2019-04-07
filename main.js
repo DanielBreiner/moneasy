@@ -42,6 +42,9 @@ app.set('view engine', 'ejs');
 //REST API and its routing
 app.use('/rest', require('./routes/rest'));
 
+//admin interface
+app.use('/admin', require('./routes/admin'));
+
 //routes
 app.use('/', require('./routes/router'));
 

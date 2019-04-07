@@ -24,7 +24,7 @@ passport.serializeUser((user, cb) => {
     cb(null, user.id);
 });
 passport.deserializeUser((id, cb) => {    
-    for (user of users) {
+    for (let user of users) {
         if (user.id == id){
             cb(null, user);
             break;

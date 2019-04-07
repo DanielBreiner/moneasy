@@ -14,11 +14,20 @@ module.exports = {
         }
     },
     adminAuthorize: (req, res, next) => {
-        if (req.user.permissions && req.user.permissions.includes("admin")){
-            next()
-        } else {
-            errorResponses(403, req, res);
-        }
+        sql.query(`SELECT groupid FROM groupusers WHERE userid='${req.user.id}';`, (res2) => {
+            let admin = false;
+            for (let row of res2.rows) {
+                if (row.groupid === 1){
+                    admin = true;
+                    break;
+                }
+            }
+            if (admin){
+                next()
+            } else {
+                errorResponses(403, req, res);
+            }
+        })
     },
     sql: {
         crossroadTips: (req, res, next) => {
