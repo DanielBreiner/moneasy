@@ -1,8 +1,10 @@
+/**
+ * @file REST API and its routing
+ * @author Daniel Breiner <danielbreinerd@gmail.com>
+ */
+
 const router = require('express').Router();
 const sql = require("../sql");
-
-
-
 
 // router.post("/sql", (req, res) => {       
 //     //NOTE(DanoB) replace true with check if user is logged in
@@ -135,8 +137,5 @@ const sql = require("../sql");
 //         })
 //     }
 // });
-
-
-
 
 module.exports = router

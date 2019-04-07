@@ -1,15 +1,13 @@
-const { Pool } = require('pg');
+/**
+ * @file Parent to all postgreSQL functions
+ * @author Daniel Breiner <danielbreinerd@gmail.com>
+ */
+
+const Client = require('pg').Client;
 if(!process.env.moneasy){
     var keys = require("./config/keys");
 }
-function connect() {
-    return new Pool({
-        connectionString: process.env.DATABASE_URL || keys.postgres.connectionString,
-        ssl: true,
-    });
-}
 
-const Client = require('pg').Client;
 /**
  * Main way to access the SQL database
  * 
@@ -33,29 +31,40 @@ function query(query, cb, onErr) {
 }
 
 module.exports = {
-    query: query,
-    /**
-     * @deprecated
-     */
-    connect: connect,
-    /**
-     * @deprecated
-     */
-    insert: require("./sql/insert.js")(connect),
-    /**
-     * @deprecated
-     */
-    request: require("./sql/request.js")(connect),
-    /**
-     * @deprecated
-     */
-    requestAll: require("./sql/requestAll.js")(connect),
-    /**
-     * @deprecated
-     */
-    requestRaw: require("./sql/requestRaw.js")(connect),
-    /**
-     * @deprecated
-     */
-    insertGoal: require("./sql/insertGoal.js")(connect)
-}
+    query: query
+};
+
+// const { Pool } = require('pg');
+
+// function connect() {
+//     return new Pool({
+//         connectionString: process.env.DATABASE_URL || keys.postgres.connectionString,
+//         ssl: true,
+//     });
+// }
+// module.exports = {
+    // /**
+    //  * @deprecated
+    //  */
+    // connect: connect,
+    // /**
+    //  * @deprecated
+    //  */
+    // insert: require("./sql/insert.js")(connect),
+    // /**
+    //  * @deprecated
+    //  */
+    // request: require("./sql/request.js")(connect),
+    // /**
+    //  * @deprecated
+    //  */
+    // requestAll: require("./sql/requestAll.js")(connect),
+    // /**
+    //  * @deprecated
+    //  */
+    // requestRaw: require("./sql/requestRaw.js")(connect),
+    // /**
+    //  * @deprecated
+    //  */
+    // insertGoal: require("./sql/insertGoal.js")(connect)
+// }

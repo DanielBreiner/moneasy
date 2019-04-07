@@ -1,3 +1,7 @@
+/**
+ * @file Express router for all main views.
+ */
+
 const router = require('express').Router();
 const middlewares = require("./middlewares");
 

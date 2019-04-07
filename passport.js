@@ -1,3 +1,8 @@
+/**
+ * @file All app authentication using passport.js and its strategies
+ * @author Daniel Breiner <danielbreinerd@gmail.com>
+ */
+
 const passport = require("passport");
 const strategyGoogle = require("passport-google-oauth20").Strategy;
 const strategyFacebook = require("passport-facebook").Strategy;
