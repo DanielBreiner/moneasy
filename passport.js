@@ -7,15 +7,38 @@ if(!process.env.moneasy){
 const sql = require("./sql");
 const randString = require("./utils/randString");
 
+//#region Checking if a user is logged through a variable (very fast) //REVIEW
+var users;
+sql.query(`SELECT * FROM users`, (res) => { //REVIEW(DanoB) Cannot deserialize right after server starts up until query is done
+    users = res.rows;
+})
 passport.serializeUser((user, cb) => {
+    users.push(user);
+    console.log("appended", user);
+    
     cb(null, user.id);
 });
-
-passport.deserializeUser((id, cb) => {
-    sql.query(`SELECT * FROM users WHERE id='${id}'`, (res) => {
-        cb(null, res.rows[0]);
-    });
+passport.deserializeUser((id, cb) => {    
+    for (user of users) {
+        console.log(user);
+        if (user.id == id){
+            cb(null, user);
+            break;
+        }
+    }
 });
+//#endregion
+
+//#region Checking if a user is logged with an SQL query (very slow) //REVIEW
+// passport.serializeUser((user, cb) => {
+//     cb(null, user.id);
+// });
+// passport.deserializeUser((id, cb) => {
+//     sql.query(`SELECT * FROM users WHERE id='${id}'`, (res) => {
+//         cb(null, res.rows[0]);
+//     });
+// });
+//#endregion
 
 userFindOrCreate = (profile, cb) => {
     sql.query(`SELECT * FROM users WHERE ${profile.provider}id='${profile.id}'`, (res) => {

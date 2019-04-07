@@ -3,16 +3,17 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyparser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const path = require('path');
 if(!process.env.moneasy){
     var keys = require("./config/keys");
 }
-
 const config = require("./config/config");
-require("./passport"); //NOTE(DanoB) Initializing passport
+require("./passport"); //NOTE(DanoB) Initializing passport  
 
 const app = express();
 
-let path = require('path');
+//middleware for public/static files
+app.use(express.static(path.join(__dirname, 'public'))); //REVIEW(DanoB) Do we have to use path here?
 
 //REVIEW(DanoB) How many of these middlewares do we really need?
 //post body parser
@@ -38,12 +39,10 @@ app.use('/auth', require("./routes/auth"));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-//middleware for public/static files
-app.use(express.static(path.join(__dirname, 'public'))); //REVIEW(DanoB) Do we have to use path here?
 
 //routes
 app.use('/ajax', require('./routes/ajax'));
-app.use('/', require('./routes/routes'));
+app.use('/', require('./routes/router'));
 
 //port
 const PORT = process.env.PORT || config.server.port;

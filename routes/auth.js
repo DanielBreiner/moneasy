@@ -12,7 +12,7 @@ router.get('/google', passport.authenticate("google", {
 }));
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
     res.redirect("/crossroad");
-})
+});
 
 // Facebook auth
 router.get('/facebook', passport.authenticate('facebook', {
@@ -26,6 +26,6 @@ router.get('/facebook/redirect', passport.authenticate('facebook', { failureRedi
 router.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
-})
+});
 
 module.exports = router;
