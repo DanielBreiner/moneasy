@@ -39,11 +39,12 @@ app.use('/auth', require("./routes/auth"));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+//REST API and its routing
+app.use('/rest', require('./routes/rest'));
 
 //routes
-app.use('/ajax', require('./routes/ajax'));
 app.use('/', require('./routes/router'));
+app.use("*", (req, res) => { res.sendStatus(404); }) //NOTE(DanoB) When no other route is found, send status 404 (not found)
 
-//port
 const PORT = process.env.PORT || config.server.port;
 app.listen(PORT, console.log(`Server started. http://localhost:${PORT}`));

@@ -14,13 +14,10 @@ sql.query(`SELECT * FROM users`, (res) => { //REVIEW(DanoB) Cannot deserialize r
 })
 passport.serializeUser((user, cb) => {
     users.push(user);
-    console.log("appended", user);
-    
     cb(null, user.id);
 });
 passport.deserializeUser((id, cb) => {    
     for (user of users) {
-        console.log(user);
         if (user.id == id){
             cb(null, user);
             break;
