@@ -5,8 +5,6 @@ const sql = require("../sql");
 router.post("/sql", (req, res) => {       
     //NOTE(DanoB) replace true with check if user is logged in
     if (true && req.body.category && req.body.amount) {
-        console.log("ifsucc");
-        
         let name = 'admin' //NOTE(DanoB) Replace when login is working
         let category = req.body.category;
         let amount = req.body.amount * ((req.body.credit === "false") ? -1 : 1);
@@ -35,7 +33,6 @@ router.post("/sql", (req, res) => {
             let end = req.body.end;
             let start = req.body.currentMoney;
             let note = req.body.name;
-            console.log(note)
             sql.insertGoal(
                 "goal",
                 {
@@ -87,18 +84,10 @@ router.get('/sql', (req, res) => {
 router.get('/smartadvice', (req, res) => {
     let username = "admin"; //NOTE(DanoB) Ked bude login fixnut
     sql.requestRaw(`SELECT text FROM public.smartadvice WHERE id=(SELECT (SELECT curgoaladvice FROM public.user WHERE name='${username}') % (SELECT COUNT(*) FROM public.smartadvice) + 1);`, function (data) {
-        console.log(data);
-        
         if (data[0]["text"].match(/\$.*?\$/)){
-            console.log("here1");
             if (data[0]["text"].includes("$today$")){
-                console.log("here2");
-                
                 sql.requestRaw("select (select sum(spent) from spending WHERE datenew > CURRENT_DATE - interval '1 day') as a from spending limit 1;", function(data2){
-                    console.log(data2);
-                    
                     final = {"data": data[0]["text"].replace("$today$", Object.values(data2[0])[0])};
-                    console.log(final);
                     res.set('Content-Type', 'application/json');
                     res.send(final);
                     sql.requestRaw(`UPDATE user SET curgoaladvice = curgoaladvice + 1 WHERE name='${username}';`, function(r) {console.log(r)});
@@ -146,8 +135,6 @@ router.get('/advice', (req, res) => {
 });
 
 router.get('*', (req, res) => {
-    console.log(req.user);
-    
     if (req.originalUrl == "/") res.render('index');
     else if (req.user){
         switch (req.originalUrl) {
@@ -166,8 +153,6 @@ router.get('*', (req, res) => {
         }
     }
     else {
-        console.log("here");
-        
         res.redirect("/");
     }
 });
