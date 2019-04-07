@@ -14,11 +14,16 @@ const app = express();
 
 let path = require('path');
 
+//REVIEW(DanoB) How many of these middlewares do we really need?
 //post body parser
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
     extended: true
 }));
+//Bodyparser
+app.use(express.urlencoded({ extended: true }));
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 //Login stuff
 app.use(cookieSession({
@@ -33,18 +38,12 @@ app.use('/auth', require("./routes/auth"));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-//midleware for public/static files
-app.use(express.static(path.join(__dirname, 'public')));
+//middleware for public/static files
+app.use(express.static(path.join(__dirname, 'public'))); //REVIEW(DanoB) Do we have to use path here?
 
 //routes
-// app.use('/sql', require('./routes/sql'));
+app.use('/ajax', require('./routes/ajax'));
 app.use('/', require('./routes/routes'));
-
-//Bodyparser
-app.use(express.urlencoded({ extended: true }));
-
-// Parse JSON bodies (as sent by API clients)
-app.use(express.json());
 
 //port
 const PORT = process.env.PORT || config.server.port;
