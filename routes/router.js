@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 router.get("/crossroad", middlewares.authorize, middlewares.sql.crossroadTips, (req, res) => {
-    res.render("crossroad", res.toEjs);
+    res.render("crossroad", req.toEjs);
 });
 router.get("/dashboard", middlewares.authorize, (req, res) => {
     res.render("dashboard");

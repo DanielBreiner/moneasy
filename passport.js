@@ -104,7 +104,11 @@ passport.use(
         },
         (req, accessToken, refreshToken, profile, cb) => {
             if (req.user) {
-                userAddAuthProvider(req.user, profile, cb);
+                if (req.user.provider === "google"){
+                    cb(null, profile);
+                } else {
+                    userAddAuthProvider(req.user, profile, cb);
+                }
             } else {
                 userFindOrCreate(profile, cb);
             }
@@ -122,7 +126,11 @@ passport.use(
         },
         (req, accessToken, refreshToken, profile, cb) => {
             if (req.user) {
-                userAddAuthProvider(req.user, profile, cb);
+                if (req.user.provider === "facebook"){
+                    cb(null, profile);
+                } else {
+                    userAddAuthProvider(req.user, profile, cb);
+                }
             } else {
                 userFindOrCreate(profile, cb);
             }

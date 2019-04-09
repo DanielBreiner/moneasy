@@ -32,11 +32,11 @@ module.exports = {
     sql: {
         crossroadTips: (req, res, next) => {
             sql.query(`SELECT advice FROM advice WHERE id=(SELECT currentadvice FROM useradvicedata WHERE userid='${req.user.id}');\
-            UPDATE useradvicedata SET currentadvice=(SELECT(SELECT(SELECT currentadvice) % (SELECT COUNT(*) FROM advice))+1) WHERE userid='${req.user.id}';`, (res2) => {                    
-                res.toEjs = { adviceContent: res2[0].rows[0].advice };
+            UPDATE useradvicedata SET currentadvice=(SELECT(SELECT(SELECT currentadvice) % (SELECT COUNT(*) FROM advice))+1) WHERE userid='${req.user.id}';`, (res2) => {
+                req.toEjs = { adviceContent: res2[0].rows[0].advice };
                 next();
             }, (err) => {
-                console.log(err);
+                console.log("error in crossroadTips middleware:",err);
                 req.toEjs = { adviceContent: "" };
                 next();
             })
