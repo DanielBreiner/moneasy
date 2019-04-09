@@ -1,10 +1,17 @@
+/**
+ * @author Daniel Breiner <danielbreinerd@gmail.com>
+ * @author Ivan Havasi <ivohavasi@gmail.com>
+ * @author Daniel Forrai <daniel@forrai.sk>
+ * @author Michal Demko <mis.demko@gmail.com>
+ */
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyparser = require("body-parser");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const path = require('path');
-if(!process.env.moneasy){
+if (!process.env.moneasy) {
     var keys = require("./config/keys");
 }
 const config = require("./config/config");
@@ -28,7 +35,7 @@ app.use(express.json());
 
 //Login stuff
 app.use(cookieSession({
-    maxAge: 24*60*60*1000, //NOTE(DanoB) 1 day cookie maxAge
+    maxAge: 24 * 60 * 60 * 1000, //NOTE(DanoB) 1 day cookie maxAge
     keys: [process.env.sessionCookieKey || keys.session.cookieKey] //NOTE(DanoB) Cookie hash key
 }));
 app.use(passport.initialize());
