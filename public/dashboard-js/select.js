@@ -32,3 +32,15 @@ function select() { //NOTE(DanoB) Changes the options in form select
             `);
     }
 }
+
+$(function() {
+    let _ = function(e) {
+        if (e.which === 1) {
+            this.click();
+            console.log("here");
+            
+        }
+    }
+    $(".apple-switch").on("mousedown", _);
+    $(".apple-switch").on("mouseup", _);
+});

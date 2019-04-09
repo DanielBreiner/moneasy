@@ -27,15 +27,15 @@
             $("#noadvice").addClass("hidden");
         }
         
-        $("#seen-advice").on("click", function(){
-            $("#advice").addClass("hidden");
-            $("#noadvice").removeClass("hidden");
-        });
-
         var delayInMilliseconds = 2000;
 
         setTimeout(function() {
-            $("#seen-advice").removeClass("hidden-seen");
+            let gotit = $("#seen-advice");
+            gotit.removeClass("hidden-seen");
+            gotit.on("click", function(){
+                $("#advice").addClass("hidden");
+                $("#noadvice").removeClass("hidden");
+            });
         }, delayInMilliseconds);
     });
     </script>
