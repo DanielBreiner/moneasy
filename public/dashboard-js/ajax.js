@@ -1,21 +1,24 @@
 
-function get() {
+function getSpending() {
     $.ajax({
-        "url": "/sql",
+        "url": "/rest/spending",
         "contentType": "application/json",
         "success": function (res) {
             let table = $("#expenses tbody").html("");
             piechart(res)
             res.forEach(function (item) {
-                let dateUse = new Date(Number(item["date"]));
+                let dateUse = new Date(item["date"]);
                 classes = [];
-                if (item["spent"] < 0) classes.push("spend");
-                if (item["id"]) classes.push("id" + item["id"]);
+                console.log(item);
+                if (item["amount"] < 0)
+                    classes.push("spend");
+                if (item["id"])
+                    classes.push("id" + item["id"]);
                 table.append(`\
-                    <tr ${(classes.length>0) ? `class="${classes.join(" ")}"`: '' }>\
-                        <td>${dateUse.getDate() + "." + (dateUse.getMonth()+1) + "." + dateUse.getFullYear()}</td>\
-                        <td>${item["spent"] + " €"}</td>\
-                        <td>${item["category"]}</td>\
+                    <tr ${(classes.length > 0) ? `class="${classes.join(" ")}"` : ''}>\
+                        <td>${dateUse.getDate() + "." + (dateUse.getMonth() + 1) + "." + dateUse.getFullYear()}</td>\
+                        <td>${item["amount"] + " €"}</td>\
+                        <td>${categories[item["category"]]}</td>\
                         <td>${item["note"]}</td>\
                         <td><a class='link'>X</a></td>\
                     </tr>\
@@ -29,37 +32,31 @@ function get() {
 function post() {
     let data = {};
     $('form').serializeArray().forEach(function (item) {
-        if (item) {
-            data[item["name"]] = item["value"];
+        if (item.name != "credit")
+            data[item.name] = item.value;
+    });
+    if (!$("form input[type=checkbox]").is(":checked"))
+        data.amount *= -1;
+    $.ajax({
+        "url": "/rest/spending",
+        "method": "POST",
+        "content-type": "application/json",
+        "data": data,
+        "success": function (res) {
+            if (res) {
+                $("form").trigger("reset");
+                getSpending();
+                //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
+            } else {
+                console.log(res)
+                //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
+            }
         }
     });
-    if ($("form input[type=checkbox]").is(":checked")) {
-        data["credit"] = true;
-    } else {
-        data["credit"] = false;
-    }
-    if (data["amount"]){
-        $.ajax({
-            "url": "/sql",
-            "method": "POST",
-            "content-type": "application/json",
-            "data": data,
-            "success": function (res) {                
-                if (res) {
-                    $("form").trigger("reset");
-                    get();
-                    //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
-                } else {
-                    console.log(res)
-                    //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
-                }
-            }
-        });
-    }
 }
 
 function removeLinks() {
-    $(".link").on("click", function() {
+    $(".link").on("click", function () {
         del($(this))
     });
 }
@@ -67,14 +64,14 @@ function removeLinks() {
 
 function del(src) {
     $.ajax({
-        "url": "/sql",
+        "url": "/rest/spending",
         "method": "DELETE",
         "content-type": "application/json",
-        "data": {"id": src.parent().parent().attr("class").split(' ').find(value => /^id/.test(value)).replace("id","")},
+        "data": { "id": src.parent().parent().attr("class").split(' ').find(value => /^id/.test(value)).replace("id", "") },
         "success": function (res) {
             if (res) { //NOTE(DanoB) On success
                 console.log(res);
-                get();
+                getSpending();
             }
         }
     });

@@ -1,7 +1,7 @@
 </head>
 
 <body class="dashboard">
-    
+
     <section class="spend-form">
         <p class="logo-crs logo-dash">
             <a href="crossroad"><img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs"></a>
@@ -42,11 +42,11 @@
             </tbody>
         </table>
     </section>
-    
+
     <script src="dashboard-js/ajax.js"></script>
     <script src="dashboard-js/piechart.js"></script>
-    <script src="dashboard-js/select.js"></script>
     <script>
+        var categories = JSON.parse('<%- JSON.stringify(categories) %>');
         $(function () {
 
             //NOTE(DanoB) adding ajax onclick listener
@@ -72,8 +72,43 @@
             });
 
 
-            get();
+            getSpending();
             select();
+        });
+
+        function select() { //NOTE(DanoB) Changes the options in form select
+            let el = $("form #radio-data");
+
+            if (!$("form input[type=checkbox]").is(':checked')) {
+                el.html(`\
+                    <div class='radio-box'>\
+                    <% for (let i = 0; i < expense.length; i++){ const item = expense[i]; %>
+                        <input <% if (i === 0) { %><%-'checked="checked"'%> <% } %>id="<%-item.name%>" type="radio" name="category" value="<%-item.name%>" />\
+                        <label class='label img' for='<%-item.name%>'><img src='<%-item.icon%>' title="<%-item.name%>"></label>\
+                    <% }  %>
+                    </div>\
+                    `);
+
+            } else {
+                el.html(`\
+                    <div class='radio-box'>\
+                    <% for (let i = 0; i < income.length; i++){ const item = income[i]; %>
+                        <input <% if (i === 0) { %><%-'checked="checked"'%> <% } %>id="<%-item.name%>" type="radio" name="category" value="<%-item.name%>" />\
+                        <label class='label img' for='<%-item.name%>'><img src='<%-item.icon%>' title="<%-item.name%>"></label>\
+                    <% }  %>
+                    </div>\
+                    `);
+            }
+        }
+
+        $(function () {
+            let _ = function (e) {
+                if (e.which === 1) {
+                    this.click();
+                }
+            }
+            $(".apple-switch").on("mousedown", _);
+            $(".apple-switch").on("mouseup", _);
         });
     </script>
 </body>

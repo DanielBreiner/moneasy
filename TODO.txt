@@ -23,6 +23,7 @@ better transition between expense-income na dashboard
 tooltipy na logo "spat na index" abo daco take
 tweak/rework text v oblacikochk
 pri updatovani table na dashboard by malo najprv vytvorit uplne novy a potom vymzat stary aby user nestratil scroll
+robots.txt
 
 ## design
 all clouds
