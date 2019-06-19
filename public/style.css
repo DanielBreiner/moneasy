@@ -248,6 +248,7 @@ body {
 
 #submit:hover {
     cursor: pointer;
+    filter: brightness(92%);
 }
 
 .credit-checkbox {
@@ -284,14 +285,14 @@ input.apple-switch {
 }
 
 input.apple-switch:after {
-    content: ""; 
+    content: "";
     position: absolute;
     top: 2px;
     left: 2px;
     width: 52px;
     height: 52px;
     background-color: transparent;
-    border-radius: 50%; 
+    border-radius: 50%;
     box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
 }
 
@@ -425,18 +426,18 @@ input.apple-switch:checked:after {
         border-radius: 63px;
         box-shadow: inset -80px 0 0 0 #ffffff;
     }
-    
+
     input.apple-switch:after {
         top: 4px;
         left: 4px;
         width: 104px;
         height: 104px;
     }
-    
+
     input.apple-switch:checked {
         box-shadow: inset 80px 0 0 0 #4ED164;
     }
-    
+
     input.apple-switch:checked:after {
         left: 80px;
     }
@@ -463,7 +464,7 @@ input.apple-switch:checked:after {
     #form-section {
         margin: 1vh 0 4vh;
     }
-      
+
     .credit-checkbox {
         font-size: 50px;
     }
@@ -471,7 +472,7 @@ input.apple-switch:checked:after {
     #main-goal .cloud-crs {
         width: 100%;
     }
-    
+
 }
 
 @media all and (max-width: 600px) {

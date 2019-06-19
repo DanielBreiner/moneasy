@@ -1,15 +1,8 @@
-FIX: niekedy maju v /dashboard polozky rovnake ID a potom ked ich das zmazat tak sa ich viacej zmaze
-full sql rework
 frontend pre login
-"Got it" tlacidlo na crossroad sa da stlacit aj ked je neviditelne - fixme
 zmensit / inak vyriesit obrazky - prilis su velke a dlho sa stahuju
 empty states pre goals a spending
 feedback nacitavania pri removovani expense na dashboard
 feedback nacitavania pri pridavani expense na dashboard
-tooltip pre ikony na dashboard
-improve expense/income checkbox/button aby fungoval onclick nie onrelease? dajak to premysliet aby clovek ked pusti mimo checkboxu tiez to islo
-hover na add expense na dashboarde
-hover na ikony na dashboarde
 hover na remove na dashboarde
 fade in fade out text bubliny na crossroad
 fix and stardardize personalized messages na goals (prip. na crossroad)
@@ -17,14 +10,11 @@ hover na linky na crossroad
 animation furikov na prichode do goal
 hover na add na goal
 tweak goal visuals
-tweak graph visual na dashboard
 waiting kolecko kym db hlada hodnoty na goal
 waiting kolecko kym db hlada hodnoty na dashboard
 better transition between expense-income na dashboard
 tooltipy na logo "spat na index" abo daco take
-tweak/rework text v oblacikochk
 pri updatovani table na dashboard by malo najprv vytvorit uplne novy a potom vymzat stary aby user nestratil scroll
-robots.txt
 
 ## design
 all clouds
@@ -39,4 +29,4 @@ prepinanie mesiacov na dashboard
 export pre rodicov
 parental control
 personalizovane advice aj podla veku
-sposob zobrazenia vsetkych advicov
+sposob ako sa daju zobrazit vsetky advice

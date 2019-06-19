@@ -56,3 +56,14 @@ function get() {
         }
     });
 }
+
+function advice() {
+    $.ajax({ //NOTE(DanoB) Increment curadvice
+        "url": "/smartadvice",
+        "method": "GET",
+        "contentType": "application/json",
+        "success": function (res) {
+            $("#advice-content").html(res["data"]);
+        }
+    });
+}

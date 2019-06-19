@@ -1,22 +1,11 @@
 </head>
-
 <body>
     <main id='main-goal'>
         <p class="logo-crs logo-dash">
             <a href="crossroad"><img src="img/moneasy_cloud.png" alt="moneasy" class="logo-img-crs"></a>
         </p>
         <section id='progress-section'>
-            <!-- hlavny goal-->
             <div class='progress-wrapper'>
-                <!--<div class='progress-bar'>
-                    progress bar
-                    <div class='progress'>
-
-                    </div>
-                    <div class='progress-end'>
-                        <img src='img/wheelbarrow.png'>
-                    </div>
-                </div>-->
             </div>
         </section>
         <section id='form-section'>
@@ -28,14 +17,12 @@
                     <input type='number' name='goal' placeholder="How much do I need?"/>
                 </div>
             </form>
-            <img src="img/submit.svg" id="submit"></img>
-            <!-- <button id='submit'>Submit</button> -->
+            <img src="img/submit.svg" alt="submit" id="submit"/>
         </section>
         <section id="advice" class="cloud-crs">
             <p id="advice-content">If you want to earn money, try working as your parents do. Deserve your money by doing household chores.</p>
         </section>
         <section class="goal-lady">
-
         </section>
     </main>
     <script src="goal-js/ajax.js"></script>
@@ -44,18 +31,7 @@
             post()
         });
 
-        function advice() {
-            $.ajax({ //NOTE(DanoB) Increment curadvice
-                "url": "/smartadvice",
-                "method": "GET",
-                "contentType": "application/json",
-                "success": function(data){
-                    $("#advice-content").html(data["data"]);
-                }
-            });
-        }
-
-        $(function (){
+        $(function () {
             getBalance();
             advice();
         });
