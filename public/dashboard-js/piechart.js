@@ -1,11 +1,11 @@
 var chart;
-function piechart(a) {
+function piechart(data) {
     let dataArr = [0, 0];
-    a.forEach((item) => {
-        if (item["amount"] > 0) {
-            dataArr[0] += item["amount"];
+    data.forEach((row) => {
+        if (row["amount"] > 0) {
+            dataArr[0] += row["amount"];
         } else {
-            dataArr[1] += item["amount"];
+            dataArr[1] += row["amount"];
         }
     })
     var ctx = document.getElementById('pieChart');

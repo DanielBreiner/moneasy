@@ -1,5 +1,4 @@
-
-function getSpending() {
+function get() {
     $.ajax({
         "url": "/rest/spending",
         "contentType": "application/json",
@@ -9,7 +8,6 @@ function getSpending() {
             res.forEach(function (item) {
                 let dateUse = new Date(item["date"]);
                 classes = [];
-                console.log(item);
                 if (item["amount"] < 0)
                     classes.push("spend");
                 if (item["id"])
@@ -24,7 +22,7 @@ function getSpending() {
                     </tr>\
                     `)
             });
-            removeLinks()
+            setupRemoveButtons()
         }
     });
 }
@@ -45,7 +43,7 @@ function post() {
         "success": function (res) {
             if (res) {
                 $("form").trigger("reset");
-                getSpending();
+                get();
                 //NOTE(DanoB) Sem pridat spatnu vazbu ze sa PODARILO
             } else {
                 console.log(res)
@@ -55,12 +53,11 @@ function post() {
     });
 }
 
-function removeLinks() {
+function setupRemoveButtons() {
     $(".link").on("click", function () {
         del($(this))
     });
 }
-
 
 function del(src) {
     $.ajax({
@@ -70,8 +67,7 @@ function del(src) {
         "data": { "id": src.parent().parent().attr("class").split(' ').find(value => /^id/.test(value)).replace("id", "") },
         "success": function (res) {
             if (res) { //NOTE(DanoB) On success
-                console.log(res);
-                getSpending();
+                get();
             }
         }
     });

@@ -9,7 +9,7 @@ const sql = require("./../sql");
 const userSetup = require("./../usersetup");
 
 router.get("/", middlewares.adminAuthorize, (req, res) => {
-    sql.query("SELECT * FROM users;", (res2) => {
+    sql.query("SELECT * FROM users;", (data) => {
         res.end(`\
     <!DOCTYPE html>\
     <html>\
@@ -20,20 +20,20 @@ router.get("/", middlewares.adminAuthorize, (req, res) => {
         <p>You are an administrator.</p>\
         <p>Your user profile: ${JSON.stringify(req.user)}</p>\
         <p>All user profiles:</p>\
-        ${JSON.stringify(res2.rows).replace("},{","}<br>{")}\
+        ${JSON.stringify(data.rows).replace("},{", "}<br>{")}\
         <form action="" method="POST">
-            <input name="removeUser" placeholder="remove user">
+            <input name="removeUser" placeholder="remove user by id">
             <button action="submit">Submit</button>
         </form>
     </body>\
-    </html>`)
+    </html>`);
     });
 });
 
 router.post("/", middlewares.adminAuthorize, (req, res) => {
     if (req.body.removeUser) {
-        sql.query(`DELETE FROM users WHERE id='${req.body.removeUser}'`)
-        userSetup.remove(req.body.removeUser)
+        sql.query(`DELETE FROM users WHERE id='${req.body.removeUser}'`);
+        userSetup.remove(req.body.removeUser);
         res.redirect("/admin");
     }
 });

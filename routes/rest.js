@@ -3,76 +3,65 @@
  * @author Daniel Breiner <danielbreinerd@gmail.com>
  */
 
-const router = require('express').Router();
+var router = require('express').Router();
 const middlewares = require("./middlewares");
 const sql = require("../sql");
 
 router.post("/spending", middlewares.authorize, (req, res) => {
-    if (req.body.amount && req.body.category) {
+    if (req.body.amount && req.body.category)
         sql.query(`\
             INSERT INTO spending (userid, amount, note, category)\
             SELECT '${req.user.id}', '${req.body.amount}', '${req.body.note}', id\
             FROM category\
             WHERE name='${req.body.category}';`,
-            (data) => {
-                res.send(true);
-            }
+            () => res.send(true)
         );
-    }
-
-    //     } else if(req.body.end && req.body.currentMoney){
-    //         let name = 'admin' //NOTE(DanoB) Replace when login is working
-    //         let date = new Date().getTime();
-    //         let end = req.body.end;
-    //         let start = req.body.currentMoney;
-    //         let note = req.body.name;
-    //         sql.insertGoal(
-    //             "goal",
-    //             {
-    //                 "user": "admin",
-    //                 "start": start,
-    //                 "end": end,
-    //                 "date": date,
-    //                 "note": note,
-    //             },
-    //             function (succ) {
-    //                 if (succ) {
-    //                     res.send(succ)
-    //                 }
-    //             }
-    //         );
-
-    //     }
-    else {
-        res.sendStatus(500);
-    }
+    else
+        res.sendStatus(400);
 });
 
 router.delete('/spending', middlewares.authorize, (req, res) => {
-    if (req.body.id) {
-        sql.query(`DELETE FROM spending WHERE userid='${req.user.id}' AND id=${req.body.id};`, function () {
-            res.send(true);
-        });
-    }
-
+    if (req.body.id)
+        sql.query(`DELETE FROM spending WHERE userid='${req.user.id}' AND id=${req.body.id};`, () => res.send(true));
+    else
+        res.sendStatus(400);
 });
 
 router.get('/spending', middlewares.authorize, (req, res) => {
-    // if (req.query.goal){
-    //     sql.requestRaw("SELECT * FROM public.goal ORDER BY date DESC;", function (data) {
-    //         res.set('Content-Type', 'application/json');
-    //         res.send(data);
-    //     })
-    // }
-    //     // sql.requestRaw("select (((round(date_part('epoch', now() ) ) )::bigint - ((round(date_part('epoch', now() ) ) )::bigint % 84000) ) / 84000) = ((1554020793558/1000 - (1554020793558/1000 % 84000))/ 84000)", function(data)) //NOTE(Is today)
-
-    // else {
-    sql.query(`SELECT amount,note,category,date,id FROM spending WHERE userid='${req.user.id}' ORDER BY date DESC;`, function (data) {
+    sql.query(`SELECT amount,note,category,date,id FROM spending WHERE userid='${req.user.id}' ORDER BY date DESC;`, (data) => {
         res.set('Content-Type', 'application/json');
         res.send(data.rows);
     })
-    // }
 });
+
+router.get("/balance", middlewares.authorize, (req, res) => {
+    sql.query(`SELECT SUM(amount) FROM spending WHERE userid='${req.user.id}';`, (data) => {
+        res.set('Content-Type', 'text/plain');
+        res.send(data.rows[0].sum.toString());
+    });
+});
+
+router.post("/goal", middlewares.authorize, (req, res) => {
+    if (req.body.name && req.body.goal)
+        sql.query(`INSERT INTO goal (userid, goal, name) VALUES ('${req.user.id}', '${req.body.goal}', '${req.body.name}')`, () => res.send(true));
+    else
+        res.sendStatus(400);
+});
+
+router.delete('/goal', middlewares.authorize, (req, res) => {
+    if (req.body.id)
+        sql.query(`DELETE FROM goal WHERE userid='${req.user.id}' AND id=${req.body.id};`, () => res.send(true));
+    else
+        res.sendStatus(400);
+});
+
+router.get('/goal', middlewares.authorize, (req, res) => {
+    sql.query(`SELECT id, goal, name FROM goal WHERE userid='${req.user.id}' ORDER BY date DESC;`, (data) => {
+        res.set('Content-Type', 'application/json');
+        res.send(data.rows);
+    });
+});
+
 
 // router.get('/smartadvice', (req, res) => {
 //     let username = "admin"; //NOTE(DanoB) Ked bude login fixnut

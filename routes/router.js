@@ -5,7 +5,6 @@
 
 const router = require('express').Router();
 const middlewares = require("./middlewares");
-const errorResponses = require("./errorresponses");
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -20,7 +19,7 @@ router.get("/goal", middlewares.authorize, (req, res) => {
     res.render("goal");
 });
 router.get("*", (req, res) => {
-    errorResponses(404, req, res);
+    res.sendStatus(404);
 });
 
 module.exports = router;

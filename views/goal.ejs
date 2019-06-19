@@ -9,7 +9,7 @@
             <!-- hlavny goal-->
             <div class='progress-wrapper'>
                 <!--<div class='progress-bar'>
-                    progress bar 
+                    progress bar
                     <div class='progress'>
 
                     </div>
@@ -21,11 +21,11 @@
         </section>
         <section id='form-section'>
             <form method="POST" action='/sql' class="spend-input goal-form">
-                <div class="goal-input"> 
+                <div class="goal-input">
                     <input type='text' name='name' placeholder="What I want?"/>
                 </div>
                 <div class="goal-input">
-                    <input type='number' name='end' placeholder="How much do I need?"/>
+                    <input type='number' name='goal' placeholder="How much do I need?"/>
                 </div>
             </form>
             <img src="img/submit.svg" id="submit"></img>
@@ -38,113 +38,26 @@
 
         </section>
     </main>
+    <script src="goal-js/ajax.js"></script>
     <script>
-        //$('.progress').css('width', '40%');
-        //ziskavanie momentalneho stavu uctu z database
-        var currentMoney = 0;
-        function a(){
-            $.ajax({ //NOTE(DanoB) Read advice
-                "url": "/sql",
-                "contentType": "application/json",
-                "success": function (res) {
-                    res.forEach((item) => {
-                        currentMoney += item["spent"];
-                    });
-                    get()
-                }
-            });
-    }
-        //post metoda
-        function post() {
-            let data = {};
-            $('form').serializeArray().forEach((item) => {
-                if(item){
-                data[item['name']] = item['value']
-                }
-            })
-            data['currentMoney'] = currentMoney;
-            $.ajax({
-                "url": "/sql",
-                "method": "POST",
-                "content-type": "application/json",
-                "data": data,
-                "success": function (res) {
-                    if (res) {
-                        get();
-                    } else {
-                        //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
-                    }
-                }
-            });
-        }
-        let data = {};
-        data['goal'] = true;
-
-        var getData;
-        function get(cb = null){
-            $.ajax({
-                "url": "/sql",
-                "method": "GET",
-                "content-type": "application/json",
-                "data": data,
-                "success": function (res) {
-                    if (res) {
-                        if (cb){
-                            cb(res);
-                        }
-                        let inside = $('.progress-wrapper').html("");
-                        res.forEach((item) => {
-                            var start = item['start']
-                            var end = item['end']
-                            var math = Math.round(currentMoney / end * 100);
-                            var matString = math + '%';
-                            inside.append(`
-                            <div class='progress-bar'>\
-                            <div id='${item['id']}' class='progress'>\
-
-                            </div>\
-                            <div class='progress-end'>\
-                            <img src='img/wheelbarrow.png'>\
-                            </div>\
-                            </div> \
-                            <div class='goal-name'>\
-                                ${item['note']}
-                            </div>\
-                            `)
-                            if(math < 2){
-                                $(`#${item['id']}`).css('width', '5%');
-                            }else if(math > 98){
-                                $(`#${item['id']}`).css('width', '98%');
-                            }else{
-                                $(`#${item['id']}`).css('width', matString);
-                            }
-                        })
-                    } else {
-                        console.log(res)
-                        //NOTE(DanoB) Sem pridat spatnu vazbu FAIL
-                    }
-                }
-            });
-        }
         $("#submit").on("click", function () {
-                post()
-            })
+            post()
+        });
 
-            function advice() {
-                $.ajax({ //NOTE(DanoB) Increment curadvice
-                    "url": "/smartadvice",
-                    "method": "GET",
-                    "contentType": "application/json",
-                    "success": function(data){
-                        $("#advice-content").html(data["data"]);
-                    }
-                });
-            }
-        
-        $(document).ready(function (){
-            a();
+        function advice() {
+            $.ajax({ //NOTE(DanoB) Increment curadvice
+                "url": "/smartadvice",
+                "method": "GET",
+                "contentType": "application/json",
+                "success": function(data){
+                    $("#advice-content").html(data["data"]);
+                }
+            });
+        }
+
+        $(function (){
+            getBalance();
             advice();
-        }    
-    );
+        });
     </script>
 </body>

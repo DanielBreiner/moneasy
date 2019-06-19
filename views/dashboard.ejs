@@ -54,15 +54,10 @@
                 post();
             })
 
-            $("form input[type=checkbox]").change(function () {
-                select();
-
-                if ($("form input[type=checkbox]").is(":checked")) {
-                    $("#submit").attr("src","img/submit.svg");
-                }
-                else {
-                    $("#submit").attr("src","img/minus.svg");
-                }
+            $("form input[type=checkbox]").change(onFormChange);
+            $("form").on("reset", () => {
+                $("form input[type=checkbox]").prop("checked", false);
+                onFormChange();
             });
 
             $(document).on('keypress',function(e) {
@@ -71,10 +66,27 @@
                 }
             });
 
+            let _ = function (e) {
+                if (e.which === 1) {
+                    this.click();
+                }
+            }
+            $(".apple-switch").on("mousedown", _);
+            $(".apple-switch").on("mouseup", _);
 
-            getSpending();
+            get();
             select();
         });
+
+        function onFormChange() {
+            select();
+            if ($("form input[type=checkbox]").is(":checked")) {
+                $("#submit").attr("src","img/submit.svg");
+            }
+            else {
+                $("#submit").attr("src","img/minus.svg");
+            }
+        }
 
         function select() { //NOTE(DanoB) Changes the options in form select
             let el = $("form #radio-data");
@@ -100,15 +112,5 @@
                     `);
             }
         }
-
-        $(function () {
-            let _ = function (e) {
-                if (e.which === 1) {
-                    this.click();
-                }
-            }
-            $(".apple-switch").on("mousedown", _);
-            $(".apple-switch").on("mouseup", _);
-        });
     </script>
 </body>

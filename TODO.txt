@@ -1,3 +1,4 @@
+FIX: niekedy maju v /dashboard polozky rovnake ID a potom ked ich das zmazat tak sa ich viacej zmaze
 full sql rework
 frontend pre login
 "Got it" tlacidlo na crossroad sa da stlacit aj ked je neviditelne - fixme
